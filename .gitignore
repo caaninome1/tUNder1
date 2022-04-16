@@ -1,1 +1,2 @@
-chat/go.sum
+**/go.sum
+chat/chat_ms/.env

@@ -1,20 +1,22 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"chat_ms/configs"
+	"chat_ms/routes"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
-	r := gin.Default()
+	//Se crea el servidor
+	router := gin.Default()
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	r.GET("", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Hola mundo!!!",
-		})
-	})
+	//Conexion a la base de datos
+	configs.ConnectDB()
 
-	r.Run() // listen and serve on 0.0.0.0:8080
+	//Se definen las rutas
+	routes.ChatRoute(router)
+
+	//Se ejecuta el servidor
+	router.Run("localhost:8080")
 }
