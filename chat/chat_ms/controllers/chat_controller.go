@@ -10,6 +10,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -49,6 +50,10 @@ func CreateChat() gin.HandlerFunc {
 			return
 		}
 
+		if chat.Messages == nil {
+			chat.Messages = []models.Message{}
+		}
+
 		newChat := models.Chat{
 			Id:       primitive.NewObjectID(),
 			User1:    chat.User1,
@@ -75,6 +80,37 @@ func CreateChat() gin.HandlerFunc {
 				Status:  http.StatusCreated,
 				Message: "success",
 				Data:    map[string]interface{}{"data": result},
+			},
+		)
+	}
+}
+
+func GetChat() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		chatId := c.Param("id")
+		var chat models.Chat
+		defer cancel()
+
+		objId, _ := primitive.ObjectIDFromHex(chatId)
+
+		err := chatCollection.FindOne(ctx, bson.M{"_id": objId}).Decode(&chat)
+		if err != nil {
+			c.JSON(
+				http.StatusInternalServerError,
+				responses.UserResponse{
+					Status:  http.StatusInternalServerError,
+					Message: "error", Data: map[string]interface{}{"data": err.Error()},
+				},
+			)
+			return
+		}
+
+		c.JSON(
+			http.StatusOK,
+			responses.UserResponse{
+				Status:  http.StatusOK,
+				Message: "success", Data: map[string]interface{}{"data": chat},
 			},
 		)
 	}

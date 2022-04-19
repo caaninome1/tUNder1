@@ -16,6 +16,7 @@ func main() {
 
 	//Se definen las rutas
 	routes.ChatRoute(router)
+	routes.MessageRoute(router)
 
 	//Se ejecuta el servidor
 	router.Run("localhost:8080")
