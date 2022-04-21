@@ -4,8 +4,10 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net/http"
 	"time"
 
+	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -39,4 +41,16 @@ var DB *mongo.Client = ConnectDB()
 func GetCollection(client *mongo.Client, collectionName string) *mongo.Collection {
 	collection := client.Database(EnvDBName()).Collection(collectionName)
 	return collection
+}
+
+//Configure and run Http Server
+func ConfigureAndRunServer(router *gin.Engine) {
+	s := &http.Server{
+		Addr:           ":" + EnvPort(),
+		Handler:        router,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
+	}
+	s.ListenAndServe()
 }
