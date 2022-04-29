@@ -73,9 +73,9 @@ func CreateMessage() gin.HandlerFunc {
 		}
 
 		c.JSON(
-			http.StatusCreated,
+			http.StatusOK,
 			responses.UserResponse{
-				Status:  http.StatusCreated,
+				Status:  http.StatusOK,
 				Message: "success",
 				Data:    map[string]interface{}{"data": result},
 			},

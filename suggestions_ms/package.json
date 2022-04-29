@@ -1,22 +1,29 @@
 {
-  "name": "tunder",
+  "name": "suggestions_ms",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon suggestions_ms/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ajax": "^0.0.4",
+    "apollo-datasource-rest": "^3.5.2",
+    "apollo-server": "^3.6.7",
+    "apollo-server-core": "^3.6.7",
+    "apollo-server-express": "^3.6.7",
     "array-concat": "^0.1.1",
     "array-filter": "^1.0.0",
     "array-includes": "^3.1.4",
     "array-reduce": "^0.0.0",
-    "express": "^4.17.3",
+    "express": "^4.18.1",
+    "graphql": "^16.4.0",
     "json-parser": "^3.1.2",
+    "lodash": "^4.17.21",
     "pg": "^8.7.3"
   },
   "devDependencies": {

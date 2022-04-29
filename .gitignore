@@ -2,3 +2,4 @@
 chat/chat_ms/.env
 /.vs
 **/env/**
+**/node_modules
