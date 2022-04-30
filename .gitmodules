@@ -1,3 +1,4 @@
 [submodule "tunder_user_ms"]
 	path = tunder_user_ms
 	url = https://github.com/jaasuarezvi/tunder_user_ms.git
+	branch= master
