@@ -19,10 +19,15 @@ namespace Profile_MS.Controllers
         {
             _mongoDBService = mongoDBService;
         }
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<Profile> Get(int id)
         {
             return await _mongoDBService.GetAsync(id);
+        }
+        [HttpGet]
+        public async Task<List<Profile>> GetAll ()
+        {
+            return await _mongoDBService.GetAllAsync();
         }
 
         [HttpPost]

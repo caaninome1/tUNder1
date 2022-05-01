@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KgNrAEjihAI0xqVrq22b22C+Ed/UhLZYDob/ZaNVrbb8Ubd1J223J8kZuGL75CkjwZuan4a1PMOFPP+jL5Qqig==",
+  "dgSpecHash": "fbqHa//oAQ5lQr+1XwDS2TqRsc+eGayeNTd68r6o3p2LiP+e1K1zNSsLdFNFvfaBrn2dNSgCknNlIqxVAxPQgw==",
   "success": true,
-  "projectFilePath": "/home/familia-diaz/Escritorio/Profile/Profile_MS/Profile_MS.csproj",
+  "projectFilePath": "/home/familia-diaz/Documentos/Arquitectura/tUNder/Profile/Profile_MS/Profile_MS.csproj",
   "expectedPackageFiles": [
     "/home/familia-diaz/.nuget/packages/dnsclient/1.6.0/dnsclient.1.6.0.nupkg.sha512",
     "/home/familia-diaz/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",

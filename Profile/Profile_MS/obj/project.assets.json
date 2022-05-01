@@ -898,11 +898,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/familia-diaz/Escritorio/Profile/Profile_MS/Profile_MS.csproj",
+      "projectUniqueName": "/home/familia-diaz/Documentos/Arquitectura/tUNder/Profile/Profile_MS/Profile_MS.csproj",
       "projectName": "Profile_MS",
-      "projectPath": "/home/familia-diaz/Escritorio/Profile/Profile_MS/Profile_MS.csproj",
+      "projectPath": "/home/familia-diaz/Documentos/Arquitectura/tUNder/Profile/Profile_MS/Profile_MS.csproj",
       "packagesPath": "/home/familia-diaz/.nuget/packages/",
-      "outputPath": "/home/familia-diaz/Escritorio/Profile/Profile_MS/obj/",
+      "outputPath": "/home/familia-diaz/Documentos/Arquitectura/tUNder/Profile/Profile_MS/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/familia-diaz/.nuget/NuGet/NuGet.Config"

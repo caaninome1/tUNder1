@@ -29,6 +29,10 @@ namespace Profile_MS.Services
         {
             return await _profileCollection.Find(x => x.Identification == id).FirstOrDefaultAsync();
         }
+        public async Task< List<Profile> > GetAllAsync()
+        {
+            return await _profileCollection.Find( x => true ).ToListAsync();
+        }
 
         public async Task AddToProfileAsync(int id, Profile profile)
         {
