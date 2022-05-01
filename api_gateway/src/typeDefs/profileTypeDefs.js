@@ -25,22 +25,24 @@ const profileTypeDef = gql`
     gender: String!
     address: String!
     phone: String!
-    characteristic: [Characteristic]
+    characteristic: [CharacteristicInput]
+  }
+
+  input CharacteristicInput {
+    type: String!
+    content: String!
   }
 
   type Query {
     getProfile(id: Int!): NewProfile
-    getProfiles(): [NewProfile]
-
+    getProfiles: [NewProfile]
   }
-  
+
   type Mutation {
-    postProfile(newProfile: NewProfile!): NewProfile
+    postProfile(newProfile: ProfileInput!): NewProfile
     deleteProfile(id: Int!): Boolean
-    updateProfile( profile: ProfileInput! ): Boolean
+    updateProfile(profile: ProfileInput!): Boolean
   }
-  
-
 `;
 
 module.exports = profileTypeDef;
