@@ -9,20 +9,69 @@ class ChatMs extends RESTDataSource {
     this.baseURL = urls.chat_ms_url;
   }
 
+  async getChat(idChat) {
+    let ans = await this.get(`/chat/${idChat}`);
+    if (ans.status == 200) {
+      return ans.data.data;
+    }
+    return null;
+  }
+
+  async getChatMessage(idChat, idMessage) {
+    let ans = await this.get(`/message/${idChat}/${idMessage}`);
+    if (ans.status == 200) {
+      return ans.data.data;
+    }
+    return null;
+  }
+
+  async getUserChats(idUser) {
+    let ans = await this.get(`/chats/${idUser}`);
+    if (ans.status == 200) {
+      return ans.data;
+    }
+    return null;
+  }
+
+  async getChatMessages(data) {
+    data = new Object(JSON.parse(JSON.stringify(data)));
+    let ans = await this.post(`/messages`, data);
+    if (ans.status == 200) {
+      return ans.data.data;
+    }
+    return null;
+  }
+
   async createChat(chat) {
     chat = new Object(JSON.parse(JSON.stringify(chat)));
     let ans = await this.post(`/chat`, chat);
-    console.log(ans);
     if (ans.status == 200) {
       return ans.data.data.InsertedID;
     }
     return null;
   }
 
-  async getChat(idChat) {
-    let ans = await this.get(`/chat/${idChat}`);
+  async createMessage(idChat, message) {
+    message = new Object(JSON.parse(JSON.stringify(message)));
+    let ans = await this.post(`/message/${idChat}`, message);
     if (ans.status == 200) {
-      return ans.data.data;
+      return ans.data.insertedID;
+    }
+    return null;
+  }
+
+  async emptyMessage(idChat, idMessage) {
+    let ans = await this.put(`/message/empty/${idChat}/${idMessage}`);
+    if (ans.status == 200) {
+      return ans.data.MatchedCount > 0;
+    }
+    return null;
+  }
+
+  async deleteMessage(idChat, idMessage) {
+    let ans = await this.put(`/message/delete/${idChat}/${idMessage}`);
+    if (ans.status == 200) {
+      return ans.data.MatchedCount > 0;
     }
     return null;
   }

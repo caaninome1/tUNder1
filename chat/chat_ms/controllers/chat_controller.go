@@ -158,7 +158,7 @@ func GetChatsUsuario() gin.HandlerFunc {
 			http.StatusOK,
 			responses.UserResponse{
 				Status:  http.StatusOK,
-				Message: "success", Data: map[string]interface{}{"data": ans},
+				Message: "success", Data: map[string]interface{}{"chats": ans},
 			},
 		)
 	}

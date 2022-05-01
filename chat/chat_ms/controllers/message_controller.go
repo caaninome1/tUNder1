@@ -77,7 +77,10 @@ func CreateMessage() gin.HandlerFunc {
 			responses.UserResponse{
 				Status:  http.StatusOK,
 				Message: "success",
-				Data:    map[string]interface{}{"data": result},
+				Data: map[string]interface{}{
+					"data":       result,
+					"insertedID": newMessage.Id.Hex(),
+				},
 			},
 		)
 	}
