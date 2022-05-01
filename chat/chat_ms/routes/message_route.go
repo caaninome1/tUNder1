@@ -10,6 +10,6 @@ func MessageRoute(router *gin.Engine) {
 	router.POST("/message/:chatId", controllers.CreateMessage())
 	router.POST("/messages", controllers.GetChatMessages())
 	router.GET("/message/:idChat/:idMsg", controllers.GetChatMessage())
-	router.GET("/message/empty/:idChat/:idMsg", controllers.EmptyMessage())
+	router.PUT("/message/empty/:idChat/:idMsg", controllers.EmptyMessage())
 	router.DELETE("/message/delete/:idChat/:idMsg", controllers.DeleteMessage())
 }
