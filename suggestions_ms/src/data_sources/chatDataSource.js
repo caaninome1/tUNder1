@@ -1,9 +1,11 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
+//Se importan las urls definidas en el archivo server.js
 const urls = require("../server");
 
 class ChatMs extends RESTDataSource {
   constructor() {
     super();
+    //Se asigna la url del microservicio
     this.baseURL = urls.chat_ms_url;
   }
 

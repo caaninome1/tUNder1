@@ -2,7 +2,10 @@
 const chatTypeDef = require("./chatTypeDefs");
 
 //Se agregan los typeDefs importados para exportarlos
-const schemasArrays = [chatTypeDef];
+const schemasArrays = [
+  chatTypeDef,
+  //Aca se van agregando los typeDef de otros microservicios
+];
 
 //Se exportan
 module.exports = schemasArrays;
