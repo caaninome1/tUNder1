@@ -22,7 +22,7 @@ namespace Profile_MS.Services
         public async Task CreateAsync(Profile profile)
         {
             await _profileCollection.InsertOneAsync(profile);
-            return;
+            return ;
         }
 
         public async Task<Profile> GetAsync(int id)
@@ -34,16 +34,14 @@ namespace Profile_MS.Services
             return await _profileCollection.Find( x => true ).ToListAsync();
         }
 
-        public async Task AddToProfileAsync(int id, Profile profile)
+        public async Task<ReplaceOneResult> AddToProfileAsync(int id, Profile profile)
         {
-            await _profileCollection.ReplaceOneAsync(x => x.Identification == id, profile);
-            return;
+            return await _profileCollection.ReplaceOneAsync(x => x.Identification == id, profile);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<DeleteResult> DeleteAsync(int id)
         {
-            await _profileCollection.DeleteOneAsync(x => x.Identification == id);
-            return;
+            return await _profileCollection.DeleteOneAsync(x => x.Identification == id);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Profile_MS.Models
         [BsonElement("type")]
         public string Type { get; set; } = null!;
         [BsonElement("content")]
-        public int Content { get; set; }
+        public String Content { get; set; }
 
     }
 }

@@ -40,15 +40,15 @@ namespace Profile_MS.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> AddToProfile(int id, [FromBody] Profile profile)
         {
-            await _mongoDBService.AddToProfileAsync(id, profile);
-            return NoContent();
+            
+            return (IActionResult)await _mongoDBService.AddToProfileAsync(id, profile);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delet(int id)
         {
-            await _mongoDBService.DeleteAsync(id);
-            return NoContent();
+            
+            return (IActionResult)await _mongoDBService.DeleteAsync(id);
         }
 
 

@@ -10,43 +10,31 @@ class ProfileMS extends RESTDataSource {
   async postProfile(newProfile) {
     newProfile = new Object(JSON.parse(JSON.stringify(newProfile)));
     let ans = await this.post('/api/profile', newProfile);
-    if (ans.status == 201) {
-      return ans;
-    }
-    return null;
+    return ans;
   }
 
   async updateProfile( profile ) {
     profile = new Object(JSON.parse(JSON.stringify(profile)));
     let ans = await this.put(`/api/profile/${profile.id}`, profile );
-    if (ans.status == 204) {
-      return true;
-    }
-    return null;
+    return ans ; 
   }
 
   async deleteProfile(id) {
     let ans = await this.delete(`/api/profile/${id}`);
-    if (ans.status == 204) {
-      return true;
-    }
-    return null;
+    return ans ; 
   }
 
   async getProfile(id) {
     let ans = await this.get(`/api/profile/${id}`);
-    if (ans.status == 200) {
-      return ans;
+    if ( ans.identification == null ){
+        return null ;
     }
-    return null;
+    return ans;
   }
 
   async getProfiles() {
     let ans = await this.get('/api/profile');
-    if (ans.status == 200) {
-      return ans;
-    }
-    return null;
+    return ans;
   }
 
 }

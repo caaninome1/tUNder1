@@ -48,7 +48,6 @@ namespace Profile_MS
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Profile_MS v1"));
             }
 
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 

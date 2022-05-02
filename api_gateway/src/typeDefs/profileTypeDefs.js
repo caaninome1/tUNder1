@@ -40,8 +40,8 @@ const profileTypeDef = gql`
 
   type Mutation {
     postProfile(newProfile: ProfileInput!): NewProfile
-    deleteProfile(id: Int!): Boolean
-    updateProfile(profile: ProfileInput!): Boolean
+    deleteProfile(id: Int!): String!
+    updateProfile(profile: ProfileInput!): String!
   }
 `;
 
