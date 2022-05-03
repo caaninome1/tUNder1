@@ -9,9 +9,10 @@ const profileTypeDef = gql`
   type NewProfile {
     identification: Int!
     name: String!
-    age: String!
+    age: Int!
     occupation: String!
     gender: String!
+    city: String!
     address: String!
     phone: String!
     characteristic: [Characteristic]
@@ -20,9 +21,10 @@ const profileTypeDef = gql`
   input ProfileInput {
     identification: Int!
     name: String!
-    age: String!
+    age: Int!
     occupation: String!
     gender: String!
+    city: String!
     address: String!
     phone: String!
     characteristic: [CharacteristicInput]
