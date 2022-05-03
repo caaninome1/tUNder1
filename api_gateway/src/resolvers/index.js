@@ -12,8 +12,8 @@ const resolvers = lodash.merge(
   chatResolver,
   imageResolver,
   suggestionsResolver,
-  userResolver
-  profileResolver,
+  userResolver,
+  profileResolver
   //Aca se van agregando los resolvers de otros microservicios
 );
 

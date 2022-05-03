@@ -8,9 +8,6 @@ const suggestionsTypeDef = gql`
   type Query {
     lookForSuggestions(idUser: String): [Suggestions]
   }
-
-  type Mutation {
-  }
 `;
 
 module.exports = suggestionsTypeDef;
