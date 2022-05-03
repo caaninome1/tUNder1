@@ -63,15 +63,15 @@ class ChatMs extends RESTDataSource {
   async emptyMessage(idChat, idMessage) {
     let ans = await this.put(`/message/empty/${idChat}/${idMessage}`);
     if (ans.status == 200) {
-      return ans.data.MatchedCount > 0;
+      return ans.data.data.MatchedCount > 0;
     }
     return null;
   }
 
   async deleteMessage(idChat, idMessage) {
-    let ans = await this.put(`/message/delete/${idChat}/${idMessage}`);
+    let ans = await this.delete(`/message/delete/${idChat}/${idMessage}`);
     if (ans.status == 200) {
-      return ans.data.MatchedCount > 0;
+      return ans.data.data.MatchedCount > 0;
     }
     return null;
   }

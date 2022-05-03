@@ -4,12 +4,14 @@ const lodash = require("lodash");
 const chatResolver = require("./chatResolver");
 const imageResolver = require("./imageResolver");
 const profileResolver = require("./profileResolver");
+const suggestionsResolver = require("./suggestionsResolver");
 
 //Se agregan los resolver importados para exportarlos
 const resolvers = lodash.merge(
   chatResolver,
   imageResolver,
   profileResolver,
+  suggestionsResolver,
   //Aca se van agregando los resolvers de otros microservicios
 );
 

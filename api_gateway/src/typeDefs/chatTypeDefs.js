@@ -5,8 +5,8 @@ const chatTypeDef = gql`
     id: String!
     user: String!
     date: String!
-    content: String!
-    status: String!
+    content: String
+    status: String
   }
 
   type Chat {
