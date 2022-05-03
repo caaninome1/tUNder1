@@ -14,7 +14,7 @@ namespace Profile_MS.Services
         private readonly IMongoCollection<Profile> _profileCollection;
         public MongoDBService()
         {
-            MongoClient client = new MongoClient("mongodb://localhost:27017");
+            MongoClient client = new MongoClient($@"mongodb://root:example@mongo:27017");
             IMongoDatabase database = client.GetDatabase("profile");
             _profileCollection = database.GetCollection<Profile>("profile");
         }
