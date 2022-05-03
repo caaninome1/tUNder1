@@ -16,6 +16,7 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
     depends_on:
       - mongo
   profile_ms:
@@ -24,4 +25,5 @@ services:
       ports:
          - 5000:80
          - 5001:443
-    
+      depends_on:
+         - mongo
