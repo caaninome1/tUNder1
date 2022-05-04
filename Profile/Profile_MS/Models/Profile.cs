@@ -23,10 +23,17 @@ namespace Profile_MS.Models
         public string Gender { get; set; } = null!;
         [BsonElement("city")]
         public string City { get; set; } = null!;
-        [BsonElement("address")]
-        public string Address { get; set; } = null!;
         [BsonElement("phone")]
         public string Phone { get; set; } = null!;
+        [BsonElement("campus")]
+        public string Campus { get; set; } = null!;
+        [BsonElement("faculty")]
+        public string Faculty { get; set; } = null!;
+        [BsonElement("academicProgram")]
+        public string academicProgram { get; set; } = null!;
+        
+        [BsonElement("genderInterest")]
+        public string GenderInterest { get; set; } = null!;
 
         [BsonElement("characteristic")]
         public List<Characteristic> Characteristics { get; set; } = null!;

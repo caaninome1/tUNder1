@@ -8,7 +8,7 @@ const profileResolver = {
       },
     },
     Mutation: {
-        postProfile: async (_, { newProfile }, { dataSources }) => {
+      postProfile: async (_, { newProfile }, { dataSources }) => {
             return await dataSources.profileMS.postProfile(newProfile);
             },
       deleteProfile: async (_, { id }, { dataSources }) => {

@@ -13,8 +13,11 @@ const profileTypeDef = gql`
     occupation: String!
     gender: String!
     city: String!
-    address: String!
     phone: String!
+    campus: String!
+    faculty: String!
+    academicProgram: String!
+    genderInterest: String!
     characteristic: [Characteristic]
   }
 
@@ -25,8 +28,11 @@ const profileTypeDef = gql`
     occupation: String!
     gender: String!
     city: String!
-    address: String!
     phone: String!
+    campus: String!
+    faculty: String!
+    academicProgram: String!
+    genderInterest: String!
     characteristic: [CharacteristicInput]
   }
 
@@ -43,7 +49,7 @@ const profileTypeDef = gql`
   type Mutation {
     postProfile(newProfile: ProfileInput!): NewProfile
     deleteProfile(id: Int!): String!
-    updateProfile(profile: ProfileInput!): String!
+    updateProfile(profile: ProfileInput!): NewProfile
   }
 `;
 

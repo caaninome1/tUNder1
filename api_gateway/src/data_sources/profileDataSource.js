@@ -15,7 +15,7 @@ class ProfileMS extends RESTDataSource {
 
   async updateProfile( profile ) {
     profile = new Object(JSON.parse(JSON.stringify(profile)));
-    let ans = await this.put(`/api/profile/${profile.id}`, profile );
+    let ans = await this.put(`/api/profile/${profile.identification}`, profile );
     return ans ; 
   }
 
