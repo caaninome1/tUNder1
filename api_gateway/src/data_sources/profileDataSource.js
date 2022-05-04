@@ -37,6 +37,14 @@ class ProfileMS extends RESTDataSource {
     return ans;
   }
 
+  async getProfileG(gender) {
+    let ans = await this.get(`/api/profile/byGender/${gender}`);
+    if ( ans.gender == null ){
+        return null ;
+    }
+    return ans;
+  }
+
 }
 
 module.exports = ProfileMS;

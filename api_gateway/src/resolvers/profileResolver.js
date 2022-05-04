@@ -6,6 +6,9 @@ const profileResolver = {
       getProfiles: async (_ , {}, { dataSources }) => {
         return await dataSources.profileMS.getProfiles();
       },
+      getProfileG: async (_, { gender }, { dataSources }) => {
+        return await dataSources.profileMS.getProfileG(gender);
+      },
     },
     Mutation: {
       postProfile: async (_, { newProfile }, { dataSources }) => {

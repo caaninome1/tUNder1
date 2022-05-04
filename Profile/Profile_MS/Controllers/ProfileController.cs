@@ -29,6 +29,12 @@ namespace Profile_MS.Controllers
         {
             return await _mongoDBService.GetAllAsync();
         }
+        [HttpGet("{gender}")]
+        [ActionName("byGender")]
+        public async Task<List<Profile>> GetGender(string gender)
+        {
+            return await _mongoDBService.GetGenderAsync(gender);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Profile profile)
@@ -45,7 +51,7 @@ namespace Profile_MS.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delet(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             
             return (IActionResult)await _mongoDBService.DeleteAsync(id);

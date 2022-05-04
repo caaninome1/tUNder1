@@ -34,6 +34,11 @@ namespace Profile_MS.Services
             return await _profileCollection.Find( x => true ).ToListAsync();
         }
 
+        public async Task<List<Profile>> GetGenderAsync(string gender)
+        {
+            return await _profileCollection.Find(x => x.Gender == gender).ToListAsync();
+        }
+
         public async Task<ReplaceOneResult> AddToProfileAsync(int id, Profile profile)
         {
             return await _profileCollection.ReplaceOneAsync(x => x.Identification == id, profile);
