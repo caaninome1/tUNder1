@@ -9,7 +9,6 @@ const imageTypeDef = gql
   }
   input NewImage {
     user_id: String!
-    b64: String!
     mime_type: String
     extension: String
   }
