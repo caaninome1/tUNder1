@@ -4,7 +4,6 @@ const userResolver = {
       return await dataSources.userMS.getUser(id);
     },
     getUsers: async (_, {}, { dataSources }) => {
-      //empty?
       return await dataSources.userMS.getUsers();
     },
   },

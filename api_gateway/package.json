@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "ajax": "^0.0.4",
+    "amqplib": "^0.8.0",
     "apollo-datasource-rest": "^3.5.2",
     "apollo-server": "^3.6.7",
     "apollo-server-core": "^3.6.7",

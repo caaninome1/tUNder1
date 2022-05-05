@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: tunder
+      MONGO_INITDB_ROOT_PASSWORD: tunder1234
+    ports:
+      - 27018:27018
+    command: mongod --port 27018
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8083:8083
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: tunder
+      ME_CONFIG_MONGODB_ADMINPASSWORD: tunder1234
+      ME_CONFIG_MONGODB_URL: mongodb://tunder:tunder1234@mongo:27018/
+    depends_on:
+      - mongo
+  chat_ms:
+      build: .
+      restart: always
+      environment:
+        MONGOURI: mongodb://tunder:tunder1234@mongo:27018/?authSource=admin&readPreference=primary&directConnection=true&ssl=false
+        DB_NAME: tunder_chat
+        PORT: 8082
+      ports:
+         - 8082:8082
+      depends_on:
+         - mongo

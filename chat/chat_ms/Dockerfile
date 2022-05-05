@@ -1,7 +1,29 @@
-FROM golang:1.18-buster
+# Build Stage
+# First pull Golang image
+FROM golang:1.18-alpine as build-env
 
-ENV MONGOURI=mongodb://jaider:jpintop1101@localhost:27017/?authSource=admin&readPreference=primary&directConnection=true&ssl=false
-ENV DB_NAME=tunder_chat
-RUN go install chat_ms@lastest
+# Set environment variable
+ENV APP_NAME chat_ms
+ENV CMD_PATH main.go
 
-CMD ["sh", "-c", "go run main.go"]
+# Copy application data into image
+COPY . $GOPATH/src/$APP_NAME
+WORKDIR $GOPATH/src/$APP_NAME
+
+# Budild application
+RUN CGO_ENABLED=0 go build -v -o /$APP_NAME $GOPATH/src/$APP_NAME/$CMD_PATH
+
+# Run Stage
+FROM alpine:3.15
+
+# Set environment variable
+ENV APP_NAME chat_ms
+
+# Copy only required data into this image
+COPY --from=build-env /$APP_NAME .
+
+# Expose application port
+EXPOSE 8082
+
+# Start app
+CMD ./$APP_NAME
