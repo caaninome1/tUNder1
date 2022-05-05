@@ -1,10 +1,12 @@
 import base64
 import os
+from threading import Thread
 
 from flask import Flask, request, make_response, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, migrate
 from google.cloud import storage
+import pika
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'service-account-file.json'
 
@@ -20,7 +22,22 @@ db = SQLAlchemy(app)
 # Settings for migrations
 migrate = Migrate(app, db)
 
-#dirname = os.path.dirname(__file__)
+# Messages Queue
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+channel = connection.channel()
+
+channel.queue_declare(queue='hello')
+
+def callback(ch, method, properties, body):
+    images = db.session.query(Image).filter(Image.id == body['id'])
+    img = images[0]    
+    upload_blob_from_memory(base64.b64decode((body['b64'])), str(img.id), img.mime_type)
+
+channel.basic_consume(queue='hello', on_message_callback=callback, auto_ack=True)
+
+print('[*] Waiting for messages. To exit press CTRL+C')
+thread = Thread(channel.start_consuming)
+thread.start()
  
 # Models
 class Image(db.Model):
@@ -30,14 +47,11 @@ class Image(db.Model):
     mime_type = db.Column(db.String(40), unique=False, nullable=True)
     extension = db.Column(db.String(10), unique=False, nullable=True)
 
+# Microservice Endpoints
 @app.route('/image', methods=['GET', 'DELETE', 'POST'])
 def image():
-    #data = request.get_json()
     if request.method == 'GET':
-        # id = data['id'] # apollo server doesn't allow to have body in GET requests ...
         id = request.args.get('id')
-        #with open('image_storage/{0}.jpg'.format(id), 'rb') as img_file:
-        #    b64_string = base64.b64encode(img_file.read())
         images = db.session.query(Image).filter(Image.id == id)
         img = images[0]
         img_dict = { 
@@ -49,46 +63,33 @@ def image():
         data = { 'image':img_dict, 'result':'FOUND', 'code':'SUCCESS', 'status':200 }
         return make_response(jsonify(data))
     elif request.method == 'DELETE':       
-        #id = data['id']
         id = request.args.get('id')
         print(id)
         image = Image.query.get(id)
         db.session.delete(image)
         db.session.commit()
-        #os.remove('image_storage/{0}.jpg'.format(id)) # temporarily in local
         delete_blob(id)
-        #print('image with id \'{0}\' has been deleted'.format(id))
         data = { 'id':image.id, 'result':'DELETED', 'code':'SUCCESS', 'status':200 }
         return make_response(jsonify(data))
 
     elif request.method == 'POST':
         data = request.get_json()
-        b64 = data['b64']
         user_id = data['user_id']
         mime_type = data['mime_type']
         extension = data['extension']
         image = Image(user_id=user_id, mime_type=mime_type, extension=extension) # id is created automatically, it will be the name of the image file
         db.session.add(image)
         db.session.commit()
-        #image_file = open(os.path.join(dirname, 'image_storage/{0}.jpg'.format(image.id)), 'wb') # use backslash if you are in Windows
-        #image_file.write(base64.b64decode((b64)))
-        #image_file.close()
-        upload_blob_from_memory(base64.b64decode((b64)), str(image.id), mime_type)
         data = { 'id':image.id, 'result':'POSTED', 'code':'SUCCESS', 'status':200 }
         return make_response(jsonify(data))
 
 
 @app.route('/images', methods=['GET'])
 def images():
-    #data = request.get_json()
-    #user_id = data['user_id']
     user_id = request.args.get('user_id')
-    # ids = ['dog', 'tree', 'bridge'] # now images will be named by their id (int)
     images = db.session.query(Image).filter(Image.user_id == user_id)
     img_list = []
     for img in images:
-        #with open('image_storage/{0}.jpg'.format(img.id), 'rb') as img_file:
-        #    b64_string_dict[img.id] = base64.b64encode(img_file.read()).decode()
         img_list.append({ 
                             'id':img.id,
                             'b64':base64.b64encode(download_blob_into_memory(str(img.id))).decode(),
@@ -98,6 +99,7 @@ def images():
     data = { 'images':img_list, 'result':'FOUND', 'code':'SUCCESS', 'status':200 }
     return make_response(jsonify(data))
 
+# Google Cloud Storage Methods:
 def upload_blob_from_memory(contents, destination_blob_name, content_type):
     """Uploads a file to the bucket."""
 
