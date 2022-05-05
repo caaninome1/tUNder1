@@ -39,9 +39,9 @@ namespace Profile_MS.Services
             return await _profileCollection.Find(x => x.Gender == gender).ToListAsync();
         }
 
-        public async Task<List<Profile>> GetGenderCityAsync(Profile profile)
+        public async Task<List<Profile>> GetGenderCityAsync(Dictionary<string,string> filter)
         {
-            return await _profileCollection.Find(x => x.Gender == profile.Gender && x.City == profile.City).ToListAsync();
+            return await _profileCollection.Find(x => (x.Gender == filter["gender"] && x.City == filter["city"])).ToListAsync();
         }
 
         public async Task<ReplaceOneResult> AddToProfileAsync(int id, Profile profile)

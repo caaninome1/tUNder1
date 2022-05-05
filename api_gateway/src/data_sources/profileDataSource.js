@@ -44,8 +44,8 @@ class ProfileMS extends RESTDataSource {
 
   async getProfileGenderCity(profileGendercity) {
     profileGendercity= new Object(JSON.parse(JSON.stringify(profileGendercity)));
-    let ans = await this.get('/api/profile/byGenderCity', profileGendercity);
-    console.log(ans);
+    let ans = await this.post('/api/profile/byGenderCity', profileGendercity);
+    console.log(profileGendercity);
     return ans;
   }
 

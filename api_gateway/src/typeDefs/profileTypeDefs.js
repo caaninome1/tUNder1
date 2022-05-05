@@ -37,8 +37,8 @@ const profileTypeDef = gql`
   }
 
   input ProfileGenderCityInput{
-    Gender:String!
-    City: String!
+    gender: String!
+    city: String!
   }
 
   input CharacteristicInput {

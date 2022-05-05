@@ -35,10 +35,10 @@ namespace Profile_MS.Controllers
             return await _mongoDBService.GetGenderAsync(gender);
         }
 
-        [HttpGet("byGenderCity")]
-        public async Task<List<Profile>> Get([FromBody] Profile profile)
+        [HttpPost("byGenderCity")]
+        public async Task<List<Profile>> Get([FromBody] Dictionary<string,string> filter )
         {
-            return await _mongoDBService.GetGenderCityAsync(profile);
+            return await _mongoDBService.GetGenderCityAsync(filter);
         }
         
 
