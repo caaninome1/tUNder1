@@ -75,9 +75,9 @@ func CreateChat() gin.HandlerFunc {
 		}
 
 		c.JSON(
-			http.StatusCreated,
+			http.StatusOK,
 			responses.UserResponse{
-				Status:  http.StatusCreated,
+				Status:  http.StatusOK,
 				Message: "success",
 				Data:    map[string]interface{}{"data": result},
 			},
@@ -111,6 +111,54 @@ func GetChat() gin.HandlerFunc {
 			responses.UserResponse{
 				Status:  http.StatusOK,
 				Message: "success", Data: map[string]interface{}{"data": chat},
+			},
+		)
+	}
+
+}
+
+func GetChatsUsuario() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		userId := c.Param("idUser")
+		var chats []models.Chat
+		defer cancel()
+
+		cur, err := chatCollection.Find(ctx, bson.M{"$or": bson.A{
+			bson.M{"user1": userId},
+			bson.M{"user2": userId},
+		}})
+		if err != nil {
+			c.JSON(
+				http.StatusInternalServerError,
+				responses.UserResponse{
+					Status:  http.StatusInternalServerError,
+					Message: "error", Data: map[string]interface{}{"data": err.Error()},
+				},
+			)
+			return
+		}
+		if err = cur.All(ctx, &chats); err != nil {
+			c.JSON(
+				http.StatusInternalServerError,
+				responses.UserResponse{
+					Status:  http.StatusInternalServerError,
+					Message: "error", Data: map[string]interface{}{"data": err.Error()},
+				},
+			)
+			return
+		}
+
+		ans := make([]string, 0)
+		for _, chat := range chats {
+			ans = append(ans, chat.Id.Hex())
+		}
+
+		c.JSON(
+			http.StatusOK,
+			responses.UserResponse{
+				Status:  http.StatusOK,
+				Message: "success", Data: map[string]interface{}{"chats": ans},
 			},
 		)
 	}

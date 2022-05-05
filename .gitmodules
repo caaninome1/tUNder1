@@ -1,3 +1,8 @@
 [submodule "tunder_user_ms"]
 	path = tunder_user_ms
 	url = https://github.com/jaasuarezvi/tunder_user_ms.git
+	branch= master
+[submodule "interaction_ms"]
+	path = interaction_ms
+	url = https://github.com/vvargasd/interaction_ms.git
+	branch= master

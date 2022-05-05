@@ -1,3 +1,7 @@
 **/go.sum
 chat/chat_ms/.env
 /.vs
+**/env/**
+**/node_modules
+Profile/Profile_MS/bin
+Profile/Profile_MS/obj
