@@ -36,6 +36,11 @@ const profileTypeDef = gql`
     characteristic: [CharacteristicInput]
   }
 
+  input ProfileGenderCityInput{
+    Gender:String!
+    City: String!
+  }
+
   input CharacteristicInput {
     type: String!
     content: String!
@@ -45,6 +50,7 @@ const profileTypeDef = gql`
     getProfile(id: Int!): NewProfile
     getProfiles: [NewProfile]
     getProfileG(gender: String!):[NewProfile]
+    getProfileGenderCity(profileGendercity: ProfileGenderCityInput!): [NewProfile]
   }
 
   type Mutation {

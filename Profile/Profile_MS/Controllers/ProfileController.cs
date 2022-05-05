@@ -29,12 +29,18 @@ namespace Profile_MS.Controllers
         {
             return await _mongoDBService.GetAllAsync();
         }
-        [HttpGet("{gender}")]
-        [ActionName("byGender")]
+        [HttpGet("byGender/{gender}")]
         public async Task<List<Profile>> GetGender(string gender)
         {
             return await _mongoDBService.GetGenderAsync(gender);
         }
+
+        [HttpGet("byGenderCity")]
+        public async Task<List<Profile>> Get([FromBody] Profile profile)
+        {
+            return await _mongoDBService.GetGenderCityAsync(profile);
+        }
+        
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Profile profile)
