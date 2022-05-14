@@ -1,18 +1,43 @@
 <template>
-    <div class="card text-start">
-        <img src="../assets/profile-pic.jpg" class="card-img-top" />
-        <div class="card-body">
-            <button class="circle-button red-orange"><i class="fa-solid fa-xmark fa-xl"></i></button>
-            <button class="circle-button sky-blue"><i class="fa-solid fa-heart fa-xl"></i></button>
+    <div class="card">
+        <img :src="`data:${getImage.mime_type};base64,${getImage.b64}`" class="card-img-top" />
+        <div class="card-body text-center">
+            <button class="circle-button red-orange me-3"><i class="fa-solid fa-xmark fa-xl"></i></button>
+            <button class="circle-button sky-blue ms-3"><i class="fa-solid fa-heart fa-xl"></i></button>
         </div>
     </div>
 </template>
 
 <script>
 
+import gql from "graphql-tag";
 export default {
-    name: 'SuggestionImage'
-}
+    name: 'SuggestionImage',
+    apollo: {
+        getImage: {
+            query: gql`
+                query ($getImageId: String!) {
+                    getImage(id: $getImageId) {
+                        id
+                        b64
+                        mime_type
+                        extension
+                    }
+                }
+            `,
+            variables() {
+                return {
+                    getImageId: "17",
+                }
+            },
+        },
+    },
+    data() {
+        return {
+            getImage: {},
+        };
+    }
+};
 
 </script>
 
@@ -29,8 +54,6 @@ img {
   border-radius: 50%;
   border: white;
 }
-
-
 
 i {
     color: white;
@@ -51,7 +74,5 @@ i {
     .sky-blue:hover {
         background-color: #22abef;
     }
-
-
 
 </style>

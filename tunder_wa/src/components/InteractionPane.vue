@@ -17,7 +17,7 @@ import SuggestionImage from './SuggestionImage.vue'
 import SuggestionDescription from './SuggestionDescription.vue'
 
 export default {
-    name: 'ProfileSuggestion',
+    name: 'InteractionPane',
     components: {
         SuggestionImage,
         SuggestionDescription

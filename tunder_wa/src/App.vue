@@ -1,16 +1,23 @@
 <template>
-  <ProfileSuggestion />
+  <div id="MatchesPaneDiv">
+    <MatchesPane />
+  </div>
+  <div id="InteractionPaneDiv">
+    <InteractionPane />
+  </div>
 </template>
 
 <script>
 
 
-import ProfileSuggestion from './components/ProfileSuggestion.vue'
+import MatchesPane from './components/MatchesPane.vue'
+import InteractionPane from './components/InteractionPane.vue'
 
 export default {
   name: 'App',
   components: {
-    ProfileSuggestion
+    MatchesPane,
+    InteractionPane
   }
 }
 
@@ -28,6 +35,15 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#MatchesPaneDiv {
+  float: left;
+  width: 25rem;
+}
+
+#InteractionPaneDiv {
+  width: 100rem;
 }
 
 </style>
