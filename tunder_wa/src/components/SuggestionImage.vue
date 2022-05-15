@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <img :src="`data:${getImage.mime_type};base64,${getImage.b64}`" class="card-img-top" />
+        <img :src="`data:${getImage.mime_type};base64,${getImage.b64}`" class="card-img-top" /><span v-if="$apollo.queries.getImage.loading">Loading...</span>
         <div class="card-body text-center">
             <button class="circle-button red-orange me-3"><i class="fa-solid fa-xmark fa-xl"></i></button>
             <button class="circle-button sky-blue ms-3"><i class="fa-solid fa-heart fa-xl"></i></button>
@@ -11,6 +11,9 @@
 <script>
 
 import gql from "graphql-tag";
+
+const getImage = {}
+
 export default {
     name: 'SuggestionImage',
     apollo: {
@@ -27,14 +30,14 @@ export default {
             `,
             variables() {
                 return {
-                    getImageId: "17",
+                    getImageId: this.$store.state.imageId,
                 }
-            },
-        },
+            }
+        }
     },
     data() {
         return {
-            getImage: {},
+            getImage,
         };
     }
 };
