@@ -18,6 +18,7 @@ const profileTypeDef = gql`
     faculty: String!
     academicProgram: String!
     genderInterest: String!
+    profileImageId: String!
     characteristic: [Characteristic]
   }
 
@@ -33,6 +34,7 @@ const profileTypeDef = gql`
     faculty: String!
     academicProgram: String!
     genderInterest: String!
+    profileImageId: String!
     characteristic: [CharacteristicInput]
   }
 
