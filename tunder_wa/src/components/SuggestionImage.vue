@@ -2,7 +2,7 @@
     <div class="card">
         <img :src="`data:${getImage.mime_type};base64,${getImage.b64}`" class="card-img-top" /><span v-if="$apollo.queries.getImage.loading">Loading...</span>
         <div class="card-body text-center">
-            <button class="circle-button red-orange me-3"><i class="fa-solid fa-xmark fa-xl"></i></button>
+            <button class="circle-button red-orange me-3"><i class="fa-solid fa-xmark fa-xl"></i></button> <!--call mutation and dequeue-->
             <button class="circle-button sky-blue ms-3"><i class="fa-solid fa-heart fa-xl"></i></button>
         </div>
     </div>
@@ -11,8 +11,6 @@
 <script>
 
 import gql from "graphql-tag";
-
-const getImage = {}
 
 export default {
     name: 'SuggestionImage',
@@ -32,12 +30,15 @@ export default {
                 return {
                     getImageId: this.$store.state.imageId,
                 }
-            }
+            },
+            result ({ data }) {
+                this.$store.commit('setImageId', data.getImage.id)
+            },
         }
     },
     data() {
         return {
-            getImage,
+            getImage: {},
         };
     }
 };

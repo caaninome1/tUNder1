@@ -17,9 +17,9 @@
 <script>
 
 import gql from "graphql-tag";
+
 export default {
-    name: 'SuggestionDescription',
-    
+    name: 'SuggestionDescription',   
     apollo: {
         getProfile: {
             query: gql`
@@ -48,6 +48,9 @@ export default {
                 return {
                     getProfileId: this.$store.state.profileId,
                 }
+            },
+            result ({ data }) {
+                this.$store.commit('setImageId', data.getProfileId.profileImageId)
             },
         },
     },
