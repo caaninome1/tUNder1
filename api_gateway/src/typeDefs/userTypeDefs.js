@@ -9,7 +9,7 @@ const userTypeDef = gql`
   }
 
   input NewUser {
-    id: Int!
+    id: Int
     name: String!
     email: String
     password: String

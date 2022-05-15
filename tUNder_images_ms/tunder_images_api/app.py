@@ -15,7 +15,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'service-account-file.json'
 app = Flask(__name__)
 
 # adding configuration for using a sqlite database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://tUNder:2022@172.17.0.2/tUNder_images_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
 
 # Creating an SQLAlchemy instance
 db = SQLAlchemy(app)
@@ -148,12 +148,15 @@ def delete_blob(blob_name):
 
 
 if __name__ == '__main__':
+    queue_host = os.getenv("QUEUE_HOST")
+    queue_name = os.getenv("QUEUE_NAME")
+    print("Connecting to queue: {} in host {}".format(queue_name, queue_host))
     # Messages Queue
     connection = pika.BlockingConnection(
-        pika.ConnectionParameters(host='172.17.0.4'))
+        pika.ConnectionParameters(host=queue_host))
     channel = connection.channel()
 
-    channel.queue_declare(queue='tunder_images', durable=True)
+    channel.queue_declare(queue=queue_name, durable=True)
 
     def callback(ch, method, properties, body):
         body = json.loads(body)
@@ -163,7 +166,7 @@ if __name__ == '__main__':
         upload_blob_from_memory(base64.b64decode(
             (body['b64'])), str(img.id), img.mime_type)
 
-    channel.basic_consume(queue='tunder_images',
+    channel.basic_consume(queue=queue_name,
                           on_message_callback=callback, auto_ack=True)
 
     print('[*] Waiting for messages. To exit press CTRL+C')
@@ -173,6 +176,6 @@ if __name__ == '__main__':
 
     thread = Thread(target=run_thread)
     thread.start()
-
+    port = int(os.environ.get('PORT', 5000))
     # run app in debug mode on port 5000
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=port)

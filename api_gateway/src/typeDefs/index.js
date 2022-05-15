@@ -1,6 +1,8 @@
 //Se importan los typeDef de cada submodulo
+const { interaction_ms_url } = require("../server");
 const chatTypeDef = require("./chatTypeDefs");
 const imageTypeDef = require("./imageTypeDefs");
+const interactionTypeDef = require("./interactionTypeDefs");
 const profileTypeDef = require("./profileTypeDefs");
 const suggestionsTypeDef = require("./suggestionsTypeDefs");
 const userTypeDef = require("./userTypeDefs");
@@ -12,6 +14,7 @@ const schemasArrays = [
   profileTypeDef,
   suggestionsTypeDef,
   userTypeDef,
+  interactionTypeDef,
   //Aca se van agregando los typeDef de otros microservicios
 ];
 

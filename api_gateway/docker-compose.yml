@@ -1,0 +1,10 @@
+version: '3.1'
+services:
+  api_gateway:
+      build: .
+      restart: always
+      environment:
+        PORT: 4000
+        MQHOST: 172.17.0.4
+      ports:
+        - 4000:4000

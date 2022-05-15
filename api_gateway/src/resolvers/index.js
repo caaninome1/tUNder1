@@ -3,6 +3,7 @@ const lodash = require("lodash");
 //Se importan los resolvers de cada microservicio
 const chatResolver = require("./chatResolver");
 const imageResolver = require("./imageResolver");
+const interactionResolver = require("./interactionResolver");
 const profileResolver = require("./profileResolver");
 const suggestionsResolver = require("./suggestionsResolver");
 const userResolver = require("./userResolver");
@@ -13,7 +14,8 @@ const resolvers = lodash.merge(
   imageResolver,
   suggestionsResolver,
   userResolver,
-  profileResolver
+  profileResolver,
+  interactionResolver
   //Aca se van agregando los resolvers de otros microservicios
 );
 

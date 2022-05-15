@@ -1,9 +1,9 @@
 const amqp = require("amqplib/callback_api");
 
-const host = "localhost";
-const port = process.env.MQPORT | 5672;
-const user = process.env.MQUSER | null;
-const pass = process.env.MQPASS | null;
+const host = process.env.MQHOST || "127.0.0.1";
+const port = process.env.MQPORT || 5672;
+const user = process.env.MQUSER || null;
+const pass = process.env.MQPASS || null;
 const userInfo = user ? `${user}:${pass}@` : "";
 const queue = "tunder_images";
 const url = `amqp://${userInfo}${host}:${port}`;

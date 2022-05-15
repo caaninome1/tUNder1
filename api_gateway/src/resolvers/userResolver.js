@@ -4,7 +4,7 @@ const userResolver = {
       return await dataSources.userMS.getUser(id);
     },
     getUsers: async (_, {}, { dataSources }) => {
-      return await dataSources.userMS.getUsers();
+      return await dataSources.userMS.getAllUsers();
     },
   },
   Mutation: {

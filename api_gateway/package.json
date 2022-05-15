@@ -21,6 +21,7 @@
     "array-filter": "^1.0.0",
     "array-includes": "^3.1.4",
     "array-reduce": "^0.0.0",
+    "dotenv": "^16.0.0",
     "express": "^4.18.1",
     "graphql": "^16.4.0",
     "json-parser": "^3.1.2",
