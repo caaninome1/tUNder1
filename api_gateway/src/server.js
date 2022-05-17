@@ -1,8 +1,8 @@
 module.exports = {
-  chat_ms_url: "http://127.0.0.1:8082",
-  images_ms_url: "http://127.0.0.1:5000",
-  user_ms_url: "http://35.232.175.103:8080",
-  profile_ms_url: "http://127.0.0.1:3000",
-  interaction_ms_url: "http://127.0.0.1:3001",
+  chat_ms_url: "https://chat-ms-y6bebo7xta-uc.a.run.app",
+  images_ms_url: "https://images-ms-y6bebo7xta-uc.a.run.app",
+  user_ms_url: "https://user-ms-y6bebo7xta-uc.a.run.app",
+  profile_ms_url: "https://profile-ms-y6bebo7xta-uc.a.run.app",
+  interaction_ms_url: "https://interactions-ms-y6bebo7xta-uc.a.run.app",
   //Agregar las demas urls
 };

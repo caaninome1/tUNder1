@@ -20,6 +20,22 @@ class UserMS extends RESTDataSource {
   async getAllUsers() {
     return await this.get("/user");
   }
+
+  async login(user) {
+    user = new Object(JSON.parse(JSON.stringify(user)));
+    let ans = await this.post("/login", user);
+    return ans;
+  }
+
+  async validateToken(token) {
+    let ans = await this.get(`/login/token/${token}`);
+    return ans;
+  }
+
+  async refreshToken(token) {
+    let ans = await this.get(`/login/refresh/${token}`);
+    return ans;
+  }
 }
 
 module.exports = UserMS;

@@ -5,7 +5,7 @@ const port = process.env.MQPORT || 5672;
 const user = process.env.MQUSER || null;
 const pass = process.env.MQPASS || null;
 const userInfo = user ? `${user}:${pass}@` : "";
-const queue = "tunder_images";
+const queue = process.env.MQQUEUE || "tunder_images";
 const url = `amqp://${userInfo}${host}:${port}`;
 
 sendMessage = (message) => {

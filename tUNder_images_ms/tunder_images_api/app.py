@@ -150,10 +150,13 @@ def delete_blob(blob_name):
 if __name__ == '__main__':
     queue_host = os.getenv("QUEUE_HOST")
     queue_name = os.getenv("QUEUE_NAME")
+    queue_user = os.getenv("QUEUE_USER")
+    queue_pass = os.getenv("QUEUE_PASS")
+    queue_url = f'amqp://{queue_user}:{queue_pass}@{queue_host}:5672'
     print("Connecting to queue: {} in host {}".format(queue_name, queue_host))
     # Messages Queue
     connection = pika.BlockingConnection(
-        pika.ConnectionParameters(host=queue_host))
+        pika.URLParameters(queue_url))
     channel = connection.channel()
 
     channel.queue_declare(queue=queue_name, durable=True)
