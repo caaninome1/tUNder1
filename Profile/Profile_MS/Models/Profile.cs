@@ -35,6 +35,12 @@ namespace Profile_MS.Models
         [BsonElement("genderInterest")]
         public string GenderInterest { get; set; } = null!;
 
+        [BsonElement("profileImageId")]
+        public string ProfileImageId { get; set; } = null!;
+
+        [BsonElement("description")]
+        public string Description { get; set; } = null!;
+
         [BsonElement("characteristic")]
         public List<Characteristic> Characteristics { get; set; } = null!;
 
