@@ -1,5 +1,5 @@
 ﻿using Profile_MS.Models;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using System.Collections.Generic;
@@ -7,31 +7,35 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace Profile_MS.Services
 {
     public class MongoDBService
     {
         private readonly IMongoCollection<Profile> _profileCollection;
-        public MongoDBService()
+
+        private IConfiguration configuration;
+        public MongoDBService(IConfiguration configuration)
         {
-            MongoClient client = new MongoClient($@"mongodb://root:example@mongo:27017");
-            IMongoDatabase database = client.GetDatabase("profile");
+            this.configuration = configuration;
+            MongoClient client = new MongoClient(configuration.GetValue<string>("MongoDB:ConnectionURI"));
+            IMongoDatabase database = client.GetDatabase(configuration.GetValue<string>("MongoDB:DatabaseName"));
             _profileCollection = database.GetCollection<Profile>("profile");
         }
 
         public async Task CreateAsync(Profile profile)
         {
             await _profileCollection.InsertOneAsync(profile);
-            return ;
+            return;
         }
 
         public async Task<Profile> GetAsync(int id)
         {
             return await _profileCollection.Find(x => x.Identification == id).FirstOrDefaultAsync();
         }
-        public async Task< List<Profile> > GetAllAsync()
+        public async Task<List<Profile>> GetAllAsync()
         {
-            return await _profileCollection.Find( x => true ).ToListAsync();
+            return await _profileCollection.Find(x => true).ToListAsync();
         }
 
         public async Task<List<Profile>> GetGenderAsync(string gender)
@@ -39,7 +43,7 @@ namespace Profile_MS.Services
             return await _profileCollection.Find(x => x.Gender == gender).ToListAsync();
         }
 
-        public async Task<List<Profile>> GetGenderCityAsync(Dictionary<string,string> filter)
+        public async Task<List<Profile>> GetGenderCityAsync(Dictionary<string, string> filter)
         {
             return await _profileCollection.Find(x => (x.Gender == filter["gender"] && x.City == filter["city"])).ToListAsync();
         }

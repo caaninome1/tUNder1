@@ -18,6 +18,9 @@ FROM alpine:3.15
 
 # Set environment variable
 ENV APP_NAME chat_ms
+ENV MONGOURI mongodb://chat_ms:chat1234@34.176.233.22:27017/?authSource=tunder_chat&replicaSet=rs0&readPreference=primaryPreferred&directConnection=true&ssl=false
+ENV DB_NAME tunder_chat
+ENV PORT 8082
 
 # Copy only required data into this image
 COPY --from=build-env /$APP_NAME .

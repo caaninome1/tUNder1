@@ -1,0 +1,4 @@
+FROM rabbitmq:latest
+
+EXPOSE 15672
+EXPOSE 5672

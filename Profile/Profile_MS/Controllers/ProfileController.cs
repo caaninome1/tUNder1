@@ -25,7 +25,7 @@ namespace Profile_MS.Controllers
             return await _mongoDBService.GetAsync(id);
         }
         [HttpGet]
-        public async Task<List<Profile>> GetAll ()
+        public async Task<List<Profile>> GetAll()
         {
             return await _mongoDBService.GetAllAsync();
         }
@@ -36,11 +36,11 @@ namespace Profile_MS.Controllers
         }
 
         [HttpPost("byGenderCity")]
-        public async Task<List<Profile>> Get([FromBody] Dictionary<string,string> filter )
+        public async Task<List<Profile>> Get([FromBody] Dictionary<string, string> filter)
         {
             return await _mongoDBService.GetGenderCityAsync(filter);
         }
-        
+
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Profile profile)
@@ -50,17 +50,17 @@ namespace Profile_MS.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> AddToProfile(int id, [FromBody] Profile profile)
+        public async Task<MongoDB.Driver.ReplaceOneResult> AddToProfile(int id, [FromBody] Profile profile)
         {
-            
-            return (IActionResult)await _mongoDBService.AddToProfileAsync(id, profile);
+
+            return await _mongoDBService.AddToProfileAsync(id, profile);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<MongoDB.Driver.DeleteResult> Delete(int id)
         {
-            
-            return (IActionResult)await _mongoDBService.DeleteAsync(id);
+
+            return await _mongoDBService.DeleteAsync(id);
         }
 
 
