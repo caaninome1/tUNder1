@@ -24,8 +24,9 @@ export default {
         SuggestionImage,
         SuggestionDescription
     },
+    /*
     apollo: {
-        lookForSuggestions: { // needs to be called when queue is empty: how?
+        lookForSuggestions: {
             query: gql`
                 query ($idUser: String) {
                     lookForSuggestions(idUser: $idUser) {
@@ -45,10 +46,46 @@ export default {
             },
         }
     },
+    */
     data() {
         return {
             lookForSuggestions: {},
         };
+    },
+    methods: {
+        getSuggestions() {
+            console.log('getting suggestions')
+            if (this.$store.getters.sqLength == 0) {
+                this.$apollo
+                    .query({
+                        query: gql`
+                            query ($idUser: String) {
+                                lookForSuggestions(idUser: $idUser) {
+                                    user
+                                }
+                            }
+                        `,
+                        variables: {
+                            idUser: this.$store.state.userId,
+                        },
+                    })
+                    .then((data) => {
+                        data.lookForSuggestions.forEach(
+                            userId => this.$store.commit('sqEnqueue', userId)
+                        )
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
+        }
+    },
+    created: function () {
+        this.getSuggestions();
+
+        setInterval(function () {
+            this.getSuggestions();
+        }.bind(this), 1000); 
     }
 }
 

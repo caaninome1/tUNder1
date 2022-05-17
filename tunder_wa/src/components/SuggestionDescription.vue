@@ -1,7 +1,7 @@
 <template>
     <div class="card text-start">
         <div class="card-body">
-            <h4 class="card-title">{{getProfile.name}}, {{getProfile.age}}</h4>
+            <h4 class="card-title">{{getProfile.name.split(' ')[0]}}, {{getProfile.age}}</h4>
             <p class="card-text">{{getProfile.description}}</p>
             <p class="card-text"><span class="fw-bold">Género: </span>{{getProfile.gender}}</p>
             <p class="card-text"><span class="fw-bold">City: </span>{{getProfile.city}}</p>

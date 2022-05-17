@@ -2,8 +2,8 @@
     <div class="card">
         <img :src="`data:${getImage.mime_type};base64,${getImage.b64}`" class="card-img-top" /><span v-if="$apollo.queries.getImage.loading">Loading...</span>
         <div class="card-body text-center">
-            <button class="circle-button red-orange me-3"><i class="fa-solid fa-xmark fa-xl"></i></button> <!--call mutation and dequeue-->
-            <button class="circle-button sky-blue ms-3"><i class="fa-solid fa-heart fa-xl"></i></button>
+            <button class="circle-button red-orange me-3" v-on:click="interact(false)"><i class="fa-solid fa-xmark fa-xl"></i></button>
+            <button class="circle-button sky-blue ms-3" v-on:click="interact(true)"><i class="fa-solid fa-heart fa-xl"></i></button>
         </div>
     </div>
 </template>
@@ -40,9 +40,38 @@ export default {
         return {
             getImage: {},
         };
+    },
+    methods: {
+        interact(interactionValue) {
+            this.$apollo
+                .mutate({
+                    mutation: gql`
+                        mutation ($like: LikeInput!) {
+                            createLike(like: $like) {
+                                user_id
+                                liked_user_id
+                                like_status
+                            }
+                        }
+                    `,
+                    variables: {
+                        like: {
+                                user_id:  this.$store.state.userId,
+                                liked_user_id: this.$store.getters._profileId, // profileId as string
+                                like_status: interactionValue
+                        },
+                    },
+                })
+                .then((data) => {
+                    console.log(data);
+                    this.$store.commit('sqDequeue')
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     }
-};
-
+}
 </script>
 
 <style scoped>
