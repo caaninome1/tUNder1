@@ -8,7 +8,14 @@ export default new Vuex.Store({
         imageId: "17",
         sq: [], // suggestions queue
     },
-    getters: {},
+    getters: {
+        _profileId: state => {
+            return state.profileId.toString()
+        },
+        sqLength: state => {
+            return state.sq.length
+        }
+    },
     mutations: {
         setUserId (state, payload) {
             state.userId = payload
