@@ -1,10 +1,10 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import * as apolloProvider from './apollo.provider'
-import store from "./store"
+import { createApp } from "vue";
+import App from "./App.vue";
+import { apolloProvider } from "./apollo.provider";
+import store from "./store";
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(apolloProvider.provider)
-app.use(store)
-app.mount('#app')
+app.use(apolloProvider);
+app.use(store);
+app.mount("#app");

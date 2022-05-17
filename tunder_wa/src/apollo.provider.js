@@ -1,13 +1,25 @@
-import { InMemoryCache, ApolloClient } from "@apollo/client";
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+} from "@apollo/client/core";
 import { createApolloProvider } from "@vue/apollo-option";
- 
-const cache = new InMemoryCache();
- 
-const apolloClient = new ApolloClient({
-  cache,
-  uri: "http://localhost:4000",
+
+// HTTP connection to the API
+const httpLink = createHttpLink({
+  // You should use an absolute URL here
+  uri: "https://api-gateway-y6bebo7xta-uc.a.run.app",
 });
- 
-export const provider = createApolloProvider({
+
+// Cache implementation
+const cache = new InMemoryCache();
+
+// Create the apollo client
+const apolloClient = new ApolloClient({
+  link: httpLink,
+  cache,
+});
+
+export const apolloProvider = createApolloProvider({
   defaultClient: apolloClient,
 });

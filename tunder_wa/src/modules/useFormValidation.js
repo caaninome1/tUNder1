@@ -1,27 +1,33 @@
 import { reactive } from "@vue/reactivity";
-import useValidators from '@/modules/validators'
-
+import useValidators from "./validators";
 
 const errors = reactive({});
 
-
 export default function useFormValidation() {
+  const { isEmpty, minLength, isEmail } = useValidators();
 
+  const validateNameField = (fieldName, fieldValue) => {
+    errors[fieldName] = !fieldValue
+      ? isEmpty(fieldName, fieldValue)
+      : minLength(fieldName, fieldValue, 4);
+  };
 
-    const { isEmpty, minLength, isEmail, isNum } = useValidators();
+  const validateEmailField = (fieldName, fieldValue) => {
+    errors[fieldName] = !fieldValue
+      ? isEmpty(fieldName, fieldValue)
+      : isEmail(fieldName, fieldValue);
+  };
 
-    const validateNameField = (fieldName, fieldValue) => {
-        errors[fieldName] = !fieldValue ? isEmpty(fieldName, fieldValue) : minLength(fieldName, fieldValue, 4)
-    }
+  const validatePasswordField = (fieldName, fieldValue) => {
+    errors[fieldName] = !fieldValue
+      ? isEmpty(fieldName, fieldValue)
+      : minLength(fieldName, fieldValue, 8);
+  };
 
-    const validateEmailField = (fieldName, fieldValue) => {
-        errors[fieldName] = !fieldValue ? isEmpty(fieldName, fieldValue) : isEmail(fieldName, fieldValue)
-    }
-   
-    const validatePasswordField = (fieldName, fieldValue) => {
-        errors[fieldName] = !fieldValue ? isEmpty(fieldName, fieldValue) : minLength(fieldName, fieldValue, 8)
-    }
-
-
-    return { errors, validateNameField, validateEmailField, validatePhoneField, validatePasswordField }
+  return {
+    errors,
+    validateNameField,
+    validateEmailField,
+    validatePasswordField,
+  };
 }
