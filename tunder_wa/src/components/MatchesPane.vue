@@ -28,7 +28,7 @@ import gql from "graphql-tag";
 const matches = []
 
 export default {
-    name: 'InteractionPane',
+    name: 'MarchesPane',
     data() {
         return {
             matches,
