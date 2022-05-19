@@ -72,7 +72,7 @@
               mutation ($user: NewUser!) {
                   login(user: $user) {
                       token,
-                      userId
+                      userID
                   }
               }
           `,
@@ -87,7 +87,7 @@
         .then(({data}) => {
           try{
             localStorage.token = data.login.token ;
-            localStorage.userId = data.login.userId ;
+            localStorage.userId = data.login.userID ;
             setTimeout(this.renewtoken, 3600000);
           }catch{
             alert("Usuario o contraseña incorrecto");

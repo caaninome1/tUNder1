@@ -8,7 +8,7 @@ import store from "./store"
 const app = createApp(App)
 
 app.use(router)
-app.use(apolloProvider.provider)
+app.use(apolloProvider.apolloProvider)
 app.use(store)
 
 app.mount('#app')
