@@ -5,7 +5,8 @@
 [submodule "interaction_ms"]
 	path = interaction_ms
 	url = https://github.com/vvargasd/interaction_ms.git
-	branch= master
+	branch= develop
 [submodule "tUNder_ma"]
 	path = tUNder_ma
 	url = https://github.com/caaninome1/tUNder_ma.git
+	branch= main

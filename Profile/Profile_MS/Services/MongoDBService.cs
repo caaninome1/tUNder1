@@ -18,8 +18,8 @@ namespace Profile_MS.Services
         public MongoDBService(IConfiguration configuration)
         {
             this.configuration = configuration;
-            MongoClient client = new MongoClient($@"mongodb://root:example@mongo:27017");
-            IMongoDatabase database = client.GetDatabase("profile");
+            MongoClient client = new MongoClient(configuration.GetValue<string>("MongoDB:ConnectionURI"));
+            IMongoDatabase database = client.GetDatabase(configuration.GetValue<string>("MongoDB:DatabaseName"));
             _profileCollection = database.GetCollection<Profile>("profile");
         }
 
