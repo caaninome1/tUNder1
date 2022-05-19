@@ -48,8 +48,6 @@ export default {
       password: "",
     });
 
-
-
     const { errors } = useFormValidation();
     const { isSignupButtonDisabled } = useSubmitButtonState(user, errors);
 
@@ -75,7 +73,7 @@ export default {
 }
 
 .form-header {
-  color: green;
+  color: rgb(106, 191, 220);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }

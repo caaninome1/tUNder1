@@ -18,6 +18,8 @@ import SuggestionDescription from './SuggestionDescription.vue'
 
 import gql from "graphql-tag";
 
+const lookForSuggestions = {}
+
 export default {
     name: 'InteractionPane',
     components: {
@@ -49,7 +51,7 @@ export default {
     */
     data() {
         return {
-            lookForSuggestions: {},
+            lookForSuggestions,
         };
     },
     methods: {
