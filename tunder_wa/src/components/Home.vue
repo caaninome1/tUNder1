@@ -10,6 +10,7 @@
 <script>
 import MatchesPane from './MatchesPane.vue'
 import InteractionPane from './InteractionPane.vue'
+
 export default {
   name: 'Home',
   components: {
@@ -20,5 +21,13 @@ export default {
 </script>
 
 <style scoped>
+
+#MatchesPaneDiv {
+  float: left;
+  width: 25rem;
+}
+#InteractionPaneDiv {
+  width: 100rem;
+}
 
 </style>

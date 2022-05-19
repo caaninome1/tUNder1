@@ -6,24 +6,33 @@
     <form class="ui form" @submit.prevent>
       <NameField v-model="user.name" />
       <EmailField v-model="user.email" />
-     <!-- <PhoneField v-model="user.phone" /> -->
-      <UploadPhoto/>
+      <div class="row">
+        <div class="col-6">
+          <input id="ImageInput" type="file" @change="readFile" accept="image/*" ref="file">
+        </div>
+        <div class="col-2">
+          <img src="" id="SignUpImage"/>
+        </div>
+      </div>
       <PasswordField v-model="user.password" />
       <button
         class="ui button green fluid big"
-        @click="signUpButtonPressed"
+        @click="register"
         :disabled="isSignupButtonDisabled"
       >
         Registrarse
       </button>
     </form>
     <div class="form-footer">
-        <p>¿Ya tiene una cuenta?<router-link to="/setup">login</router-link> </p>
+        <p>¿Ya tienes cuenta? <router-link to="/login">Ingresa aquí</router-link> </p>
     </div>
   </section>
 </template>
 
 <script>
+
+
+
 import { reactive } from "vue";
 
 import NameField from "@/components/NameField";
@@ -34,6 +43,17 @@ import UploadPhoto from "@/components/UploadPhoto";
 import useFormValidation from "@/modules/useFormValidation";
 import useSubmitButtonState from "@/modules/useSubmitButtonState";
 
+const image = {
+  user_id: "13",
+  mime_type: "",
+  extension: "",
+  b64: ""
+}
+
+import gql from "graphql-tag";
+
+let user = {}
+
 export default {
   components: {
     NameField,
@@ -42,7 +62,7 @@ export default {
     PasswordField,
   },
   setup() {
-    let user = reactive({
+    user = reactive({
       name: "",
       email: "",      
       password: "",
@@ -52,10 +72,80 @@ export default {
     const { isSignupButtonDisabled } = useSubmitButtonState(user, errors);
 
     const signUpButtonPressed = () => {
-      console.log(user);
+      console.log(user)
     };
     return { user, signUpButtonPressed, isSignupButtonDisabled };
   },
+  data() {
+        return {
+            image,
+        };
+  },
+  methods: {
+        register() {
+
+            this.$apollo
+                .mutate({
+                    mutation: gql`
+                      mutation ($newUser: NewUser!) {
+                        saveUser(newUser: $newUser) {
+                          id
+                          name
+                          email
+                          password
+                        }
+                      }
+                    `,
+                    variables: {
+                        newUser: user
+                    },
+                })
+                .then((_user) => {
+                    console.log(_user);
+                    image.user_id = _user.saveUser.id
+                    console.log("usuario registrado")
+
+                    this.$apollo
+                        .mutate({
+                            mutation: gql`
+                              mutation PostImage($newImage: NewImage!) {
+                                postImage(newImage: $newImage)
+                              }
+                            `,
+                            variables: {
+                                newImage: image
+                            },
+                        })
+                        .then((imageResult) => {
+                            console.log(imageResult);
+                            console.log("imagen subida")
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+            
+        },
+        readFile() {
+
+          const FR = new FileReader();
+            
+          FR.addEventListener("load", function(evt) {
+            document.getElementById("SignUpImage").src = evt.target.result; // evt.target.result is the b64 string
+            console.log(evt.target.result);
+            image.b64 = evt.target.result
+          }); 
+            
+          FR.readAsDataURL(this.$refs.file.files[0]);        
+          image.mime_type = this.$refs.file.files[0].type
+          image.extension = document.getElementById('ImageInput').value.split('.').pop()
+          
+        }
+    },
 };
 </script>
 
@@ -77,4 +167,12 @@ export default {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+
+img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: white;
+}
+
 </style>
