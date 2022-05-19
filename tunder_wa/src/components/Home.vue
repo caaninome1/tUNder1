@@ -1,7 +1,8 @@
 <template>
-  <div id="MatchesPaneDiv">
+  <div id="MatchesPaneDiv" >
     <MatchesPane />
   </div>
+  <br>
   <div id="InteractionPaneDiv">
     <InteractionPane />
   </div>
@@ -22,12 +23,6 @@ export default {
 
 <style scoped>
 
-#MatchesPaneDiv {
-  float: left;
-  width: 25rem;
-}
-#InteractionPaneDiv {
-  width: 100rem;
-}
+
 
 </style>

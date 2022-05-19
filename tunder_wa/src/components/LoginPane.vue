@@ -93,6 +93,7 @@
           try{
             localStorage.token = data.login.token ;
             localStorage.userId = data.login.userID ;
+            this.$store.state.userId = data.login.userID ;
             setTimeout(this.renewtoken, 3600000);
             this.$router.push({ name: "home" });
           }catch{
