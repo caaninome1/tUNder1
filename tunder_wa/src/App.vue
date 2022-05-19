@@ -1,49 +1,23 @@
+
 <template>
-  <div id="MatchesPaneDiv">
-    <MatchesPane />
+  <div class="router" v-bind:style="{ 'margin-left': marginLeft }">
+    <router-view />
   </div>
-  <div id="InteractionPaneDiv">
-    <InteractionPane />
-  </div>
+ 
 </template>
 
-<script>
-
-
-import MatchesPane from './components/MatchesPane.vue'
-import InteractionPane from './components/InteractionPane.vue'
-
-export default {
-  name: 'App',
-  components: {
-    MatchesPane,
-    InteractionPane
-  }
-}
-
-</script>
 
 <style>
-
-@import url(https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css);
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css);
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-#MatchesPaneDiv {
-  float: left;
-  width: 25rem;
-}
-
-#InteractionPaneDiv {
-  width: 100rem;
-}
-
+  @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css);
+  @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css);
+  
+  @import "./styles/main.css";
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
 </style>

@@ -4,10 +4,10 @@ import Vuex from "vuex";
  
 export default new Vuex.Store({
     state: {
-        userId: "13", // current application user id, set from login
-        profileId: 15,
-        imageId: "17",
-        sq: [], // suggestions queue
+        userId: "3", // current application user id, set from login
+        profileId: 1,
+        imageId: "1",
+        sq: [4], // suggestions queue
     },
     getters: {
         _profileId: state => {

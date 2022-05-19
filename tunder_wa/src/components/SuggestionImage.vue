@@ -14,6 +14,7 @@ import gql from "graphql-tag";
 
 export default {
     name: 'SuggestionImage',
+    props: ['idImagen', 'idUsuario'],
     apollo: {
         getImage: {
             query: gql`
@@ -28,7 +29,7 @@ export default {
             `,
             variables() {
                 return {
-                    getImageId: this.$store.state.imageId,
+                    getImageId: this.idImagen
                 }
             },
             result ({ data }) {
@@ -57,7 +58,7 @@ export default {
                     variables: {
                         like: {
                                 user_id:  this.$store.state.userId,
-                                liked_user_id: this.$store.getters._profileId, // profileId as string
+                                liked_user_id: this.idUsuario, // profileId as string
                                 like_status: interactionValue
                         },
                     },

@@ -1,0 +1,68 @@
+/* Color variables*/
+:root {
+  --blue: #336cfb;
+  --indigo: #1f58e7;
+  --purple: #558eff;
+  --cyan: #ebf0ff;
+  --info: #a9c1fd;
+  --blue-lightest: #ebf0ff;
+
+  --pink: #ff7e77;
+  --red: #e74f48;
+  --danger: #ff6760;
+
+  --orange: #efad0a;
+  --warning: #fac032;
+  --yellow: #fcdf98;
+
+  --green: #03b575;
+  --success: #16d090;
+  --teal: #34eeae;
+  --white: #fff;
+  --gray: #a0a4a8;
+  --gray-dark: #52575c;
+  --primary: green;
+  --secondary: #a0a4a8;
+  --light: #f8f9fa;
+  --dark: #343a40;
+}
+:root {
+  --blue-default: #336cfb;
+  --blue-dark: #1f58e7;
+  --blue-hover: #558eff;
+  --blue-light: #a9c1fd;
+  --blue-lightest: #ebf0ff;
+  --black: #25282b;
+  --gray-dark: #52575c;
+  --gray: #a0a4a8;
+  --gray-light: #cacccf;
+  --gray-lighter: #dbdde0;
+  --divider: #e8e8e8;
+  --background: #f6f8fb;
+
+  background-color: var(--background);
+}
+
+body {
+  background-color: var(--background) !important;
+}
+.default-title {
+  color: var(--blue-default);
+  font-weight: bold !important;
+}
+
+#AlertDiv {
+  display: none;
+}
+.contenedor {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.centrado {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+}

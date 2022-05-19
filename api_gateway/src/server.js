@@ -4,5 +4,4 @@ module.exports = {
   user_ms_url: "https://user-ms-y6bebo7xta-uc.a.run.app",
   profile_ms_url: "https://profile-ms-y6bebo7xta-uc.a.run.app",
   interaction_ms_url: "https://interactions-ms-y6bebo7xta-uc.a.run.app",
-  //Agregar las demas urls
 };
