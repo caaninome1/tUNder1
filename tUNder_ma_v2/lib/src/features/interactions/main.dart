@@ -1,49 +1,44 @@
-import 'package:auth/src/features/interactions/content.dart';
 import 'package:flutter/material.dart';
-import 'package:swipe_cards/draggable_card.dart';
-import 'package:swipe_cards/swipe_cards.dart';
-
+import 'draggable_card.dart';
+import 'swipe_cards.dart';
 import 'content.dart';
 
-class Interaction extends StatelessWidget {
-  static const String routeName = '/interactions';
+void main() {
+  runApp(const MyApp());
+}
 
-  static route() {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        title: 'Swipe Cards Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: MyHomePage(title: 'Swipe Cards Demo'),
-        debugShowCheckedModeBanner: false,
-      );
-    }
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return MaterialApp(
+      title: 'Swipe Cards Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: const MyHomePage(title: 'Swipe Cards Demo'),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-  final String? title;
+  final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<SwipeItem> _swipeItems = <SwipeItem>[];
+  final List<SwipeItem> _swipeItems = <SwipeItem>[];
   MatchEngine? _matchEngine;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-  List<String> _names = [
+  final List<String> _names = [
     "Red",
     "Blue",
     "Green",
@@ -53,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "Purple",
     "Pink"
   ];
-  List<Color> _colors = [
+  final List<Color> _colors = [
     Colors.red,
     Colors.blue,
     Colors.green,
@@ -68,28 +63,31 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     for (int i = 0; i < _names.length; i++) {
       _swipeItems.add(SwipeItem(
-          content: Content(text: _names[i], color: _colors[i]),
-          likeAction: () {
-            _scaffoldKey.currentState?.showSnackBar(SnackBar(
-              content: Text("Liked ${_names[i]}"),
-              duration: Duration(milliseconds: 500),
-            ));
-          },
-          nopeAction: () {
-            _scaffoldKey.currentState?.showSnackBar(SnackBar(
-              content: Text("Nope ${_names[i]}"),
-              duration: Duration(milliseconds: 500),
-            ));
-          },
-          superlikeAction: () {
-            _scaffoldKey.currentState?.showSnackBar(SnackBar(
-              content: Text("Superliked ${_names[i]}"),
-              duration: Duration(milliseconds: 500),
-            ));
-          },
-          onSlideUpdate: (SlideRegion? region) async {
-            print("Region $region");
-          }));
+        content: Content(text: _names[i], color: _colors[i]),
+        likeAction: () {
+          _scaffoldKey.currentState?.showSnackBar(SnackBar(
+            content: Text("Liked ${_names[i]}"),
+            duration: const Duration(milliseconds: 500),
+          ));
+        },
+        nopeAction: () {
+          _scaffoldKey.currentState?.showSnackBar(SnackBar(
+            content: Text("Nope ${_names[i]}"),
+            duration: const Duration(milliseconds: 500),
+          ));
+        },
+        superlikeAction: () {
+          _scaffoldKey.currentState?.showSnackBar(SnackBar(
+            content: Text("Superliked ${_names[i]}"),
+            duration: const Duration(milliseconds: 500),
+          ));
+        },
+        //onSlideUpdate: (SlideRegion? region) async {
+        //  if (kDebugMode) {
+        //    print("Region $region");
+        //  }
+        //}
+      ));
     }
 
     _matchEngine = MatchEngine(swipeItems: _swipeItems);
@@ -120,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
               onStackFinished: () {
-                _scaffoldKey.currentState!.showSnackBar(SnackBar(
+                _scaffoldKey.currentState!.showSnackBar(const SnackBar(
                   content: Text("Stack Finished"),
                   duration: Duration(milliseconds: 500),
                 ));
@@ -139,17 +137,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     _matchEngine!.currentItem?.nope();
                   },
-                  child: Text("Nope")),
+                  child: const Text("Nope")),
               ElevatedButton(
                   onPressed: () {
                     _matchEngine!.currentItem?.superLike();
                   },
-                  child: Text("Superlike")),
+                  child: const Text("Superlike")),
               ElevatedButton(
                   onPressed: () {
                     _matchEngine!.currentItem?.like();
                   },
-                  child: Text("Like"))
+                  child: const Text("Like"))
             ],
           )
         ])));

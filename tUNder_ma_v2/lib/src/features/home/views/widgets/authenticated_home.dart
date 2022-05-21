@@ -81,16 +81,12 @@ class AuthenticatedHome extends StatelessWidget {
                       onPressed: () => context.read<AuthCubit>().logout(),
                     ),
                     UnderlinedButton(
-                      child: Text('Match'),
-                      color: theme.highlightColor,
-                      //onPressed: () => Navigator.pushNamed(
-                      //context,
-                      //RoomsScreen.routeName,
-                      onPressed: () => Navigator.pushNamed(
-                        context,
-                        Interaction.routeName,
-                      ),
-                    ),
+                        child: Text('Match'),
+                        color: theme.highlightColor,
+                        //onPressed: () => Navigator.pushNamed(
+                        //context,
+                        //RoomsScreen.routeName,
+                        onPressed: () => {main()}),
                     UnderlinedButton(
                       child: Text('Configuración'),
                       color: Color.fromARGB(255, 120, 178, 223),
