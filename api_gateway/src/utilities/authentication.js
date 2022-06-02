@@ -11,7 +11,6 @@ const authentication = async ({ req }) => {
       if (response.status != 200) {
         throw new AuthenticationError(`SESION INACTIVA - ${401}`);
       }
-      console.log("answer: ", response.data);
       return { logged: response.data };
     } catch (error) {
       throw new AuthenticationError(`TOKEN ERROR: ${401}: ${error}`);
@@ -21,7 +20,6 @@ const authentication = async ({ req }) => {
 
 const requireAuth = (logged) => {
   if (!logged) {
-    console.log("UNAUTHORIZED");
     throw new AuthenticationError(`SESION INACTIVA - ${401}`);
   }
 };
