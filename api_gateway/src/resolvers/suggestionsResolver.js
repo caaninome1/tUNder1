@@ -1,6 +1,8 @@
+const { requireAuth } = require("../utilities/authentication");
 const suggestionsResolver = {
   Query: {
-    lookForSuggestions: async (_, { idUser }, { dataSources }) => {
+    lookForSuggestions: async (_, { idUser }, { dataSources, logged }) => {
+      requireAuth(logged);
       //Se buscan las interacciones ya realizadas por el usuario
       // let iteractions = await dataSources.iteractionsMS.getUserIteractions(
       //   idUser

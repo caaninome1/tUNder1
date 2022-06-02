@@ -1,31 +1,32 @@
-const { ApolloError } = require("apollo-server");
+const { AuthenticationError } = require("apollo-server");
 const { user_ms_url } = require("../server");
-const fetch = require("node-fetch");
+const axios = require("axios");
 
 const authentication = async ({ req }) => {
   const token = req.headers.authorization || "";
-  if (token == "") return { userIdToken: null };
+  if (token == "") return { logged: false };
   else {
     try {
-      let requestOptions = {
-        method: "GET",
-        headers: { "Content-Type": "application/json", Authorization: token },
-        body: JSON.stringify({ token }),
-        redirect: "follow",
-      };
-      let response = await fetch(`${user_ms_url}/validarToken`, requestOptions);
+      let response = await axios.get(`${user_ms_url}/login/token/${token}`);
       if (response.status != 200) {
-        console.log(response);
-        throw new ApolloError(
-          `SESION INACTIVA - ${401}` + response.status,
-          401
-        );
+        throw new AuthenticationError(`SESION INACTIVA - ${401}`);
       }
-      return { userIdToken: (await response.json()).data };
+      console.log("answer: ", response.data);
+      return { logged: response.data };
     } catch (error) {
-      throw new ApolloError(`TOKEN ERROR: ${500}: ${error}`, 500);
+      throw new AuthenticationError(`TOKEN ERROR: ${401}: ${error}`);
     }
   }
 };
 
-module.exports = authentication;
+const requireAuth = (logged) => {
+  if (!logged) {
+    console.log("UNAUTHORIZED");
+    throw new AuthenticationError(`SESION INACTIVA - ${401}`);
+  }
+};
+
+module.exports = {
+  authentication,
+  requireAuth,
+};

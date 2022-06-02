@@ -2,11 +2,11 @@ const { ApolloServer } = require("apollo-server");
 const typeDefs = require("./typeDefs");
 const resolvers = require("./resolvers");
 const dataSources = require("./data_sources");
-//const authentication = require("./utils/authentication");
+const { authentication } = require("./utilities/authentication");
 require("dotenv").config();
 
 const server = new ApolloServer({
-  //context: authentication,
+  context: authentication,
   typeDefs,
   resolvers,
   dataSources: dataSources,
