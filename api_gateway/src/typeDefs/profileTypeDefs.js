@@ -51,6 +51,7 @@ const profileTypeDef = gql`
   }
 
   type Query {
+    getProfileSoap(id: Int!): NewProfile
     getProfile(id: Int!): NewProfile
     getProfiles: [NewProfile]
     getProfileG(gender: String!):[NewProfile]

@@ -23,6 +23,6 @@ namespace tunder_interface.Models
 
     public class ResponseProfileType
     {
-        public Profile GetProfile { get; set; } = new Profile();
+        public Profile GetProfileSoap { get; set; } = new Profile();
     }
 }

@@ -1134,26 +1134,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dequi\\.nuget\\packages\\": {}
+    "/home/familia-diaz/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dequi\\source\\repos\\tUNder\\tunder_interface\\tunder_interface\\tunder_interface.csproj",
+      "projectUniqueName": "/home/familia-diaz/Documentos/Arquitectura/tUNder/tunder_interface/tunder_interface/tunder_interface.csproj",
       "projectName": "tunder_interface",
-      "projectPath": "C:\\Users\\dequi\\source\\repos\\tUNder\\tunder_interface\\tunder_interface\\tunder_interface.csproj",
-      "packagesPath": "C:\\Users\\dequi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dequi\\source\\repos\\tUNder\\tunder_interface\\tunder_interface\\obj\\",
+      "projectPath": "/home/familia-diaz/Documentos/Arquitectura/tUNder/tunder_interface/tunder_interface/tunder_interface.csproj",
+      "packagesPath": "/home/familia-diaz/.nuget/packages/",
+      "outputPath": "/home/familia-diaz/Documentos/Arquitectura/tUNder/tunder_interface/tunder_interface/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dequi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/familia-diaz/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1203,7 +1201,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.300/RuntimeIdentifierGraph.json"
       }
     }
   }

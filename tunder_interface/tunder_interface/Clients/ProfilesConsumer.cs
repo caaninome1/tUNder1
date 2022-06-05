@@ -16,21 +16,21 @@ namespace tunder_interface.Clients
             var query = new GraphQLRequest
             {
                 Query = @"
-                        query GetProfile($getProfileId: Int!) {
-                            getProfile(id: $getProfileId) {
+                        query GetProfileSoap($getProfileSoapId: Int!) {
+                            getProfileSoap(id: $getProfileSoapId) {
+                                identification
                                 name
                                 age
                                 occupation
                                 gender
-                                city
                             }
                         }",
-                Variables = new { getProfileId = id }
+                Variables = new { getProfileSoapId = id }
             };
 
             var response = await _client.SendQueryAsync<ResponseProfileType>(query);
 
-            return response.Data.GetProfile;
+            return response.Data.GetProfileSoap;
         }
     }
 }

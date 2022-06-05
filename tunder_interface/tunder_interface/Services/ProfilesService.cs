@@ -22,6 +22,7 @@ namespace tunder_interface.Services
         {
             Console.WriteLine(id);
             Profile profile = _profilesConsumer.GetProfile(id).Result;
+            
             return profile;
         }
     }

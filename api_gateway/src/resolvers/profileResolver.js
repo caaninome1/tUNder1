@@ -1,6 +1,9 @@
 const { requireAuth } = require("../utilities/authentication");
 const profileResolver = {
   Query: {
+    getProfileSoap: async (_, { id }, { dataSources, logged }) => {
+      return await dataSources.profileMS.getProfile(id);
+    },
     getProfile: async (_, { id }, { dataSources, logged }) => {
       requireAuth(logged);
       return await dataSources.profileMS.getProfile(id);
