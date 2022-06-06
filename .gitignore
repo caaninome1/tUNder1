@@ -5,3 +5,5 @@ chat/chat_ms/.env
 **/node_modules
 Profile/Profile_MS/bin
 Profile/Profile_MS/obj
+**/bin
+**/obj
