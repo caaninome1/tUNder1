@@ -1,0 +1,9 @@
+version: '3.1'
+services:
+  interface_ms:
+      build: .
+      restart: always
+      ports:
+        - 5297:80
+        - 7297:443
+    
