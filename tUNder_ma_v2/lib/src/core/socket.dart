@@ -31,7 +31,7 @@ class SocketManager {
       return socket;
     }
 
-    final accessToken = await repository.getAccessToken();
+    final accessToken = await repository.getToken();
 
     socket.io.options['extraHeaders'] = {
       'Authorization': 'Bearer $accessToken'

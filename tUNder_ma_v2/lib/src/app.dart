@@ -45,7 +45,6 @@ class _MyAppState extends State<MyApp> {
           appBarTheme: AppBarTheme(elevation: 0),
           primaryColor: Color(0xff565A5C),
           secondaryHeaderColor: Color(0xffA61C31),
-          secondaryColor: Color(0xff78B2DF),
           highlightColor: Color(0xff94B43B),
           indicatorColor: Color(0xff4C525C),
         ),

@@ -37,7 +37,7 @@ class RoomTile extends StatelessWidget {
           DirectMessageScreen.routeName,
           arguments: DirectMessageArguments(username: room.owner.username),
         ),
-        child: Text((room.owner as User).username),
+        child: Text((room.owner as User).name),
       );
     }
 

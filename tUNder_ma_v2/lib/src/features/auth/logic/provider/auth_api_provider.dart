@@ -1,22 +1,55 @@
+import 'package:auth/src/core/GraphQLGateway.dart';
 import 'package:auth/src/features/auth/logic/interceptors/auth_token_interceptor.dart';
 import 'package:auth/src/features/auth/logic/models/tokens.dart';
 import 'package:auth/src/features/auth/logic/models/user.dart';
 import 'package:auth/src/shared/logic/http/api.dart';
 import 'package:auth/src/shared/logic/http/interceptors/error_dialog_interceptor.dart';
+import 'package:graphql/client.dart';
 
 class AuthAPIProvider {
+  final loginMutation = """
+        mutation login(\$user: NewUser!) {
+          login(user: \$user) {
+            token,
+            userID
+          }
+        }
+    """;
+
+  final profileQuery = """
+        query GetProfile(\$getProfileId: Int!) {
+          getProfile(id: \$getProfileId) {
+            name
+            profileImageId
+            age
+            identification
+            city
+            phone
+            description
+            gender
+          }
+        }
+  """;
+
   Future<Tokens> authenticate(String username, String password) async {
-    final response = await api.post(
-      '/auth/login',
-      data: {
-        'username': username,
-        'password': password,
+    QueryResult ans = await GraphQLGateway.getClient().mutate(MutationOptions(
+      document: gql(loginMutation),
+      variables: <String, dynamic>{
+        'user': {
+          "email": username,
+          "password": password,
+        },
       },
-    );
-
-    final tokens = Tokens.fromJson(response.data);
-
-    return tokens;
+    ));
+    print(ans.data);
+    if (!ans.hasException) {
+      Tokens token = Tokens.fromJson(ans.data?['login']);
+      // Hive.box('user').put('token', token.token);
+      // Hive.box('user').put('userID', token.userID);
+      return token;
+    } else {
+      return Tokens.fromJson({'token': null, 'userID': null});
+    }
   }
 
   Future<Tokens> register(
@@ -47,17 +80,24 @@ class AuthAPIProvider {
     );
   }
 
-  Future<User?> getProfile() async {
-    final response = await api.get(
-      '/auth/me',
-      options: Options(
-        headers: {
-          ErrorDialogInterceptor.skipHeader: true,
+  Future<User?> getProfile(String? userID) async {
+    QueryResult ans = await GraphQLGateway.getClient().query(QueryOptions(
+      document: gql(profileQuery),
+      variables: <String, dynamic>{
+        'getProfileId': userID,
         },
-      ),
+    )
     );
+    print(ans.data);
+    if (!ans.hasException) {
+      User user = User.fromJson(ans.data?['getProfile']);
+      // Hive.box('user').put('token', token.token);
+      // Hive.box('user').put('userID', token.userID);
+      return user;
+    } else {
+      return null;
+    }
 
-    return User.fromJson(response.data);
   }
 
   Future<Tokens> loginWithFacebook(String? accessToken) {

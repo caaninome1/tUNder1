@@ -1,11 +1,11 @@
 class Tokens {
-  late final String accessToken;
-  late final String refreshToken;
+  late final String token;
+  late final String userID;
 
-  Tokens({required this.accessToken});
+  Tokens({required this.token});
 
   Tokens.fromJson(Map<String, dynamic> json) {
-    accessToken = json['access_token'];
-    refreshToken = json['refresh_token'];
+    token = json['token'];
+    userID = json['userID'];
   }
 }

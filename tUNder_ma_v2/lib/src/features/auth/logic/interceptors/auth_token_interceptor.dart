@@ -23,7 +23,7 @@ class AuthTokenInterceptor extends Interceptor {
       return;
     }
 
-    final accessToken = await repository.getAccessToken();
+    final accessToken = await repository.getToken();
 
     if (accessToken != null) {
       options.headers['Authorization'] = 'Bearer $accessToken';
@@ -49,7 +49,7 @@ class AuthTokenInterceptor extends Interceptor {
     final repository = context.read<AuthRepository>();
 
     if (err.response?.statusCode == 401 &&
-        await repository.getRefreshToken() != null) {
+        await repository.getUserID() != null) {
       return _handlerRefreshToken(context, repository, err, handler);
     }
 
@@ -68,7 +68,7 @@ class AuthTokenInterceptor extends Interceptor {
       return super.onError(err, handler);
     }
 
-    final refreshToken = await repository.getRefreshToken();
+    final refreshToken = await repository.getUserID();
 
     try {
       final response = await api.post(

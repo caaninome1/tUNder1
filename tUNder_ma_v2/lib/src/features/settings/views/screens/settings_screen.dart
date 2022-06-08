@@ -39,7 +39,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final user = context.read<AuthCubit>().state;
 
     if (user != null) {
-      _usernameController.text = user.username;
+      _usernameController.text = user.name;
       _emailController.text = user.email ?? '';
     }
   }
@@ -181,7 +181,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          if (state != null && !state.isSocial)
+                          if (state != null && !(state.isSocial ?? false))
                             Column(
                               children: [
                                 MainTextField(

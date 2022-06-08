@@ -59,7 +59,7 @@ class AuthenticatedHome extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  user.username,
+                  user.name,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: theme.highlightColor,

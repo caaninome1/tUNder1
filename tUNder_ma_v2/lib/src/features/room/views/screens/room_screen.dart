@@ -137,7 +137,7 @@ class _RoomMembersState extends State<_RoomMembers> {
               itemBuilder: (_, index) {
                 final member = widget.members[index] as User;
 
-                if (_showOnlineUsers && !member.online) {
+                if (_showOnlineUsers && !(member.online ?? false)) {
                   return Container();
                 }
 
@@ -147,13 +147,13 @@ class _RoomMembersState extends State<_RoomMembers> {
                     context,
                     DirectMessageScreen.routeName,
                     arguments: DirectMessageArguments(
-                      username: member.username,
+                      username: member.name,
                       fromMessages: true,
                     ),
                   ),
                   child: ListTile(
-                    title: Text(member.username),
-                    trailing: UserStatus(online: member.online),
+                    title: Text(member.name),
+                    trailing: UserStatus(online: member.online ?? false),
                   ),
                 );
               },

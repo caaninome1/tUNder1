@@ -62,16 +62,16 @@ class _DirectMessageScreenState extends State<DirectMessageScreen> {
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(state.user.username),
+                  Text(state.user.name),
                   UserStatus(
-                    online: state.user.online,
+                    online: state.user.online ?? false,
                   ),
                 ],
               ),
             ),
             body: BlocProvider(
               create: (context) => MessageBloc(
-                partnerId: state.user.id,
+                partnerId: state.user.identification.toString(),
                 type: MessageType.direct,
                 context: context,
                 fromMessages: widget.fromMessages,
