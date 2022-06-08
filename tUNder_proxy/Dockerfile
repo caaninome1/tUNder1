@@ -4,7 +4,7 @@ ENV NODE_ROOT /var/www/api-gateway
 WORKDIR $NODE_ROOT
 RUN mkdir log
 COPY app.conf /tmp/app.nginx
-COPY server.* /etc/nginx/
+#COPY server.* /etc/nginx/
 RUN ls /etc/nginx/
 RUN envsubst '$NODE_ROOT' < /tmp/app.nginx > /etc/nginx/conf.d/default.conf
 
