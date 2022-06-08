@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ComicsWS;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 //using ComicsWS;
 
@@ -13,13 +14,18 @@ namespace tunder_interface.Controllers.api
 
         }
 
-        [HttpGet("GetComics")]
-        public async Task<IActionResult> GetComics()
+        [HttpGet("GetComic")]
+        public async Task<getComicResponse> GetComic(int id)
         {
-            Console.WriteLine("Calling Comics WS");
-            //ComicsServiceClient ws = new ComicsServiceClient();
-            //GetComicsResponse response = await ws.GetComicsAsync(id);
-            return StatusCode(200);
+            ComicsPortClient ws = new ComicsPortClient();
+
+            // id is wrapped in a request object
+            getComicRequest request = new getComicRequest();
+            request.id = id;
+
+            getComicResponse1 response = await ws.getComicAsync(request);
+
+            return response.getComicResponse;
         }
     }
 }
