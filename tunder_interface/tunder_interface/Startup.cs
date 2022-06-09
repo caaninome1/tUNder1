@@ -34,6 +34,7 @@ namespace tunder_interface
 
             // comics endpoint needs below lines of code
             app.UseRouting();
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

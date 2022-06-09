@@ -10,13 +10,12 @@ import { createApolloProvider } from "@vue/apollo-option";
 // HTTP connection to the API
 const httpLink = createHttpLink({
   // You should use an absolute URL here
-  uri: "https://api-gateway-y6bebo7xta-uc.a.run.app",
+  uri: "https://proxy-y6bebo7xta-uc.a.run.app",
 });
 
 //Token
 const authMiddleware = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem("token");
-  console.log(token);
   if (token != null && token !== "") {
     operation.setContext({
       headers: {

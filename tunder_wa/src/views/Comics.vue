@@ -37,9 +37,9 @@
                 
                 axios.get('https://interface-y6bebo7xta-uc.a.run.app/api/Comics/GetComic?id=' + id)
                 .then((response) => {
-                    this.comic_name = response.data.title
-                    this.comic_author = response.data.body
-                    console.log(response.data)
+                    console.log(response.data.comic)
+                    this.comic_name = response.data.comic.nombre
+                    this.comic_author = response.data.comic.autor
                 })
                 .catch((error) => {
                     console.log(error)

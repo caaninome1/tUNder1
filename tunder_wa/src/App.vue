@@ -1,6 +1,6 @@
 
 <template>
-  <div class="router" v-bind:style="{ 'margin-left': marginLeft }">
+  <div class="router">
     <router-view />
   </div>
  

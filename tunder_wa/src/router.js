@@ -24,6 +24,10 @@ const routes = [
     path: "/comics",
     name: "comics",
     component : Comics
+  },
+  {
+    path: "/",
+    redirect: "/login"
   }
 ];
 
