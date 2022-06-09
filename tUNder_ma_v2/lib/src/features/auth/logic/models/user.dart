@@ -1,11 +1,19 @@
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable implements Comparable {
-  late final String id;
-  late final String username;
+  late final String? id;
+  late final String? username;
   late final String? email;
-  late final bool online;
-  late final bool isSocial;
+  late final bool? online;
+  late final bool? isSocial;
+  late final String name;
+  late final String profileImageId;
+  late final int age;
+  late final int identification;
+  late final String city;
+  late final String phone;
+  late final String description;
+  late final String gender;
 
   User({
     required this.id,
@@ -21,6 +29,14 @@ class User extends Equatable implements Comparable {
     email = json['email'];
     online = json['online'] ?? false;
     isSocial = json['isSocial'] ?? false;
+    name = json['name'] ?? '';
+    profileImageId = json['profileImageId'] ?? '';
+    age = json['age'] ?? 0;
+    identification = json['identification'] ?? 0;
+    city = json['city'] ?? '';
+    phone = json['phone'] ?? '';
+    description = json['description'] ?? '';
+    gender = json['gender'] ?? '';
   }
 
   static List<User> fromList(List<dynamic> list) {
@@ -33,7 +49,7 @@ class User extends Equatable implements Comparable {
       return 0;
     }
 
-    if (this.online) {
+    if (this.online ?? false) {
       return -1;
     }
 

@@ -22,9 +22,7 @@ namespace tunder_interface.Controllers.api
             // id is wrapped in a request object
             getComicRequest request = new getComicRequest();
             request.id = id;
-
             getComicResponse1 response = await ws.getComicAsync(request);
-
             return response.getComicResponse;
         }
     }

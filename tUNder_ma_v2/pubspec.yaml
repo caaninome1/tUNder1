@@ -46,6 +46,8 @@ dependencies:
   google_sign_in: ^5.1.1
   flutter_bloc: ^8.0.0
   bloc: ^8.0.1
+  graphql: ^5.1.1
+  graphql_flutter: ^5.1.0
 
 flutter_icons:
   android: true

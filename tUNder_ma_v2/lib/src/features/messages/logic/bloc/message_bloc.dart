@@ -127,7 +127,7 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
   void createTimer(User user, Timer timer) {
     cancelTypingTimer(user);
 
-    typingTimers[user.id] = timer;
+    typingTimers[user.identification.toString()] = timer;
   }
 
   void cancelTypingTimer(User user) {

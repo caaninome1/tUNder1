@@ -24,7 +24,7 @@ class ErrorDialogInterceptor extends Interceptor {
     if (data == null ||
         !(data is Map) ||
         err.response?.statusCode == 401 &&
-            await repository.getRefreshToken() != null &&
+            await repository.getUserID() != null &&
             !err.requestOptions.headers
                 .containsKey(AuthTokenInterceptor.skipHeader)) {
       return super.onError(err, handler);

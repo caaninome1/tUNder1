@@ -325,12 +325,12 @@ class __MessageState extends State<_Message> {
                 context,
                 DirectMessageScreen.routeName,
                 arguments: DirectMessageArguments(
-                  username: widget.from.username,
+                  username: widget.from.name,
                   fromMessages: true,
                 ),
               ),
               child: Text(
-                widget.from.username,
+                widget.from.name,
                 style: TextStyle(fontSize: 12),
               ),
             ),

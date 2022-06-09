@@ -33,17 +33,17 @@ class AuthRepository {
   }
 
   Future<void> logout() async {
-    await deleteAccessToken();
-    await deleteRefreshToken();
+    await deleteToken();
+    await deleteUserID();
   }
 
   Future<User?> getProfile() async {
-    if (await getAccessToken() == null && await getRefreshToken() == null) {
+    if (await getToken() == null && await getUserID() == null) {
       return null;
     }
 
     try {
-      final profile = await _provider.getProfile();
+      final profile = await _provider.getProfile(await getUserID());
 
       return profile;
     } catch (e) {
@@ -65,7 +65,7 @@ class AuthRepository {
 
   Future<void> loginWithRefreshToken() async {
     return setTokens(
-      await _provider.loginWithRefreshToken(await getRefreshToken()),
+      await _provider.loginWithRefreshToken(await getUserID()),
     );
   }
 
@@ -134,32 +134,32 @@ class AuthRepository {
     return _provider.recover(email);
   }
 
-  Future<String?> getAccessToken() {
-    return _storage.read(key: 'accessToken');
+  Future<String?> getToken() {
+    return _storage.read(key: 'token');
   }
 
-  Future<void> setAccessToken(String token) {
-    return _storage.write(key: 'accessToken', value: token);
+  Future<void> setToken(String token) {
+    return _storage.write(key: 'token', value: token);
   }
 
-  Future<void> deleteAccessToken() {
-    return _storage.delete(key: 'accessToken');
+  Future<void> deleteToken() {
+    return _storage.delete(key: 'token');
   }
 
-  Future<String?> getRefreshToken() {
-    return _storage.read(key: 'refreshToken');
+  Future<String?> getUserID() {
+    return _storage.read(key: 'userID');
   }
 
-  Future<void> setRefreshToken(String token) {
-    return _storage.write(key: 'refreshToken', value: token);
+  Future<void> setUserID(String userID) {
+    return _storage.write(key: 'userID', value: userID);
   }
 
-  Future<void> deleteRefreshToken() {
-    return _storage.delete(key: 'refreshToken');
+  Future<void> deleteUserID() {
+    return _storage.delete(key: 'userID');
   }
 
   Future<void> setTokens(Tokens tokens) async {
-    await setAccessToken(tokens.accessToken);
-    await setRefreshToken(tokens.refreshToken);
+    await setToken(tokens.token);
+    await setUserID(tokens.userID);
   }
 }

@@ -240,7 +240,8 @@ namespace ComicsWS
         {
             if ((endpointConfiguration == EndpointConfiguration.ComicsPortSoap11))
             {
-                return new System.ServiceModel.EndpointAddress("http://6851-186-118-24-19.ngrok.io:80/ws");
+                //return new System.ServiceModel.EndpointAddress("http://6851-186-118-24-19.ngrok.io:80/ws");
+                return new System.ServiceModel.EndpointAddress(Environment.GetEnvironmentVariable("COMICS_SOAP_URL"));
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
