@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          title: Text(widget.title!),
+          title: Text(widget.title),
         ),
         body: Container(
             child: Stack(children: [
