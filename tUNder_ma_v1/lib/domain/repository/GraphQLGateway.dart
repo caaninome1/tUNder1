@@ -4,7 +4,8 @@ import 'package:hive/hive.dart';
 class GraphQLGateway {
   static GraphQLClient getClient() {
     final _httpLink = HttpLink(
-      'https://api-gateway-y6bebo7xta-uc.a.run.app',
+      //'https://api-gateway-y6bebo7xta-uc.a.run.app',
+      'https://proxy-y6bebo7xta-uc.a.run.app/',
     );
     final _authLink = AuthLink(
       getToken: () async {
