@@ -35,7 +35,7 @@
         methods: {
             getNow(id){
                 
-                axios.get('https://interface-y6bebo7xta-uc.a.run.app/api/Comics/GetComic?id=' + id)
+                axios.get('https://interface-5fz6wzxo5a-uc.a.run.app/api/Comics/GetComic?id=' + id)
                 .then((response) => {
                     console.log(response.data.comic)
                     this.comic_name = response.data.comic.nombre
