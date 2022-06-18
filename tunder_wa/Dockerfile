@@ -15,7 +15,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 80
+EXPOSE 8080
 RUN npm run build
 # Exports
-CMD [ "http-server", "dist", "-P http://localhost:8080?", "" ]
+CMD [ "http-server", "dist", "-P", "http://127.0.0.1:8080?" ]
