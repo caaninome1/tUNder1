@@ -14,10 +14,8 @@ const imageResolver = {
   },
   Mutation: {
     postImage: async (_, { newImage }, { dataSources, logged }) => {
-      let newImageServer = JSON.parse(JSON.stringify(newImage));
-      newImageServer.b64 = "";
       let id = await dataSources.imageMS.postImage(newImage);
-      sendMessage({ id: id, b64: newImage.b64 });
+      sendMessage({ id: id, b64: newImage.b64, mime_type: newImage.mime_type });
       return id;
     },
     deleteImage: async (_, { id }, { dataSources, logged }) => {
