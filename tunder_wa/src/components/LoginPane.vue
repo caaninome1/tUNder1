@@ -25,6 +25,8 @@
           />
         </div>
         <br />
+        <vue-recaptcha sitekey="6LczXaEgAAAAACBbU8tPdJbvj54oy9IrA1lDse5X"></vue-recaptcha>
+        <br />
         <button type="submit" class="btn btn-primary">Ingresar</button>
         <button type="button" class="btn btn-primary" v-on:click="goRegist()">
           Registro
@@ -34,10 +36,11 @@
   </div>
 </template>
 <script>
+import { VueRecaptcha } from 'vue-recaptcha';
 import gql from "graphql-tag";
 export default {
   name: "LoginPane",
-
+  components: { VueRecaptcha },
   data: function () {
     return {
       user: {
