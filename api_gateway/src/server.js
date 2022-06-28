@@ -6,9 +6,9 @@ module.exports = {
   //interaction_ms_url: "https://interactions-ms-y6bebo7xta-uc.a.run.app",
 
   //user_ms_url: "https://user-ms-5fz6wzxo5a-uc.a.run.app",
-  user_ms_url: "http://34.70.192.148:8080",
-  chat_ms_url: "https://chat-ms-5fz6wzxo5a-uc.a.run.app",
-  images_ms_url: "https://images-ms-5fz6wzxo5a-uc.a.run.app",
-  profile_ms_url: "https://profile-ms-5fz6wzxo5a-uc.a.run.app",
-  interaction_ms_url: "https://interaction-ms-5fz6wzxo5a-uc.a.run.app",
+  user_ms_url: "http://user-ms",
+  chat_ms_url: "http://chat-ms",
+  images_ms_url: "http://images-ms",
+  profile_ms_url: "http://profile-ms",
+  interaction_ms_url: "http://interaction-ms",
 };

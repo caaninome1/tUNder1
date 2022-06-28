@@ -180,7 +180,7 @@ export default {
       FR.addEventListener("load", function (evt) {
         document.getElementById("SignUpImage").src = evt.target.result; // evt.target.result is the b64 string
         console.log(evt.target.result);
-        image.b64 = evt.target.result;
+        image.b64 = evt.target.result.split(",")[1];
       });
 
       FR.readAsDataURL(this.$refs.file.files[0]);
