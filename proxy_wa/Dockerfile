@@ -7,6 +7,6 @@ COPY app.conf /tmp/app.nginx
 COPY server.* ./
 RUN envsubst '$NODE_ROOT' < /tmp/app.nginx > /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+EXPOSE 443
 
 CMD [ "nginx", "-g", "daemon off;" ]

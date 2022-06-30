@@ -69,6 +69,7 @@ export default {
                 name
                 profileImageId
                 gender
+                genderInterest
                 city
               }
             }
@@ -108,7 +109,7 @@ export default {
               `,
               variables: {
                 profileGendercity: {
-                  gender: profile.data.getProfile.gender,
+                  gender: profile.data.getProfile.genderInterest,
                   city: profile.data.getProfile.city,
                 },
               },

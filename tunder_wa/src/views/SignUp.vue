@@ -20,6 +20,17 @@
           <img src="" id="SignUpImage" />
         </div>
       </div>
+      <div class="field">
+        <div class="ui left icon input big">
+          <i class="user icon"></i>
+          <label for="gen">Género</label>
+          <select name="gen" id="gen" v-model="user.gender">
+            <option value="">Seleccione</option>
+            <option value="F">Femenino</option>
+            <option value="M">Masculino</option>
+          </select>
+        </div>
+      </div>
       <PasswordField v-model="user.password" />
       <button
         class="ui button green fluid big"
@@ -71,6 +82,7 @@ export default {
       name: "",
       email: "",
       password: "",
+      gender: "",
     });
 
     const { errors } = useFormValidation();
@@ -88,6 +100,7 @@ export default {
   },
   methods: {
     register() {
+      console.log(user);
       this.$apollo
         .mutate({
           mutation: gql`
@@ -101,7 +114,11 @@ export default {
             }
           `,
           variables: {
-            newUser: user,
+            newUser: {
+              name: user.name,
+              email: user.email,
+              password: user.password,
+            },
           },
         })
         .then((_user) => {
@@ -143,13 +160,13 @@ export default {
                       name: user.name,
                       age: 19,
                       occupation: "Estudiante",
-                      gender: g ? "M" : "F",
+                      gender: user.gender,
                       city: "Bogota",
                       phone: "",
                       campus: "BOGOTA",
                       faculty: "NA",
                       academicProgram: "NA",
-                      genderInterest: !g ? "M" : "F",
+                      genderInterest: user.gender == "M" ? "F" : "M",
                       profileImageId: imageResult.data.postImage.toString(),
                       description: "NA",
                       characteristic: [],
