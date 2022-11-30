@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "halogen-basis-331619",
+    "private_key_id": "7c21ae66e2434e73fecfdabb1e5db44521f0eaf6",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCh58bqX0fLYbd6\nLEx+65gIUVFqYZvBCtyD3lZwY0ScgT9kgXlUMD4E23tHK5AsGqBYI6FWkb39GN0B\n/QnLodZolwOD3wEsr1RR4S4Cml2IL4er4pT8OkDAjigjE8/LCKYWcU75Q1XAGK4X\n/sfR78McZxAdKZ0LtJouvjYxyYSOccisVVD5E/2z6pselFSPgrVNOt/iFSLcdaDw\nsh4PAR7qzW6NI4EwG3P/55grDVPsRf4oDubknzDKUysFqmWpv+BJalpNrvB+dSrx\nK1BZimYmhtbeq5mmka9Hyl/gV0qBOlZiv65SnUvXqIRYeDcKXHdAxNOECcOJfukJ\nG9D4YzyNAgMBAAECggEAAhH6oyiQvHMFa5SBbeYJTaHsjpWs7iz7YNxI8qryR6YH\nb3uQV5k+UcWUr/ZIo6e7gSUDfR3j9gaJXOslYusw2KmFq/wAAdhEFb/xXKsoowMo\nkvQUv5znEw8+SCSKtafop8TPI7TOteQa5cemOnL8ZbKTrCvKDEpE5nAcNUrEXSXm\nE1QEp0kjVg25q2ReA9f9ryQZzTaYhfYVceNMCvCEHhV8l62squTgjI42B1/rvLcZ\nG3ZDhSmINwwQPRndgtrLQyMc5Ks15HuqvYcoulz43OGVA0xEbC6jbA8fMWw9Q8RC\n2c50wpJOc5zmEEra0zXP8026JkoMYh0tDh+hEBJdaQKBgQDkXsHYGhbIGNF2h7AF\n8s/lcdZ10Hroy0+tso9QdLTh9dD2IQFB+MCctocyGI2eExaon6Xrhpim8hfIgA4x\n8levKKB2Ai7PiKc/hzF9muovketGUQ2BY0Yr3UcTxl89y6tvyyc2kx4v4A7YtBVl\n23pCXYzXqvMZVlrB0oZarvMUiwKBgQC1fmz8cbAJQFlhWI+P7B+12aAAlDr+ocPD\nmFWJGdJUmhJCTORusulefHdv+XbRJem8nfyJ5pAy6KSw+39Mi+8utIfllWWvaWn0\n0xhLQNsahTKCO1r49zWjlbnnH6Qis97AFHJp/hn8OI/+XxCayUQ4NmkHc5sKr030\nGuF40njeRwKBgH0EVq/b0F7oHzr5GuaWvzLHN/U1FSP9sPfQyV3tFdyhOiyTcuHP\nsHnZ/nbxNA22O3BCPY2LGGREIbr0R1EWbuQHpJgVp9Sa5ZwEgZZWSR+TjS3oTzFm\nzFJVB4UO0rK8nXRMzYG11g+1Y8tEAnbJSMut9N1Xy08yk+qJOl3Iam/zAoGBAKD4\nZpVoB+fMqPmL4JiXpnBVenHJBqH8u3JpU8ProP7kP7mKFTiReiYRYqVvrpBFfg+K\nWAe+9LoSWK+YAAnWOudDuxxG6w8vAYjhCTUFas8Uv/19w2v5ZhuWmnGBQMR+n9vg\nxrF3a3imeh/0FPgT9muc5n5zbFmHri4JAV113znVAoGBAOAfZuZR/CHOX6IfoHWi\n0ovS+2Afl5BY1lNHpfzXmytnwsrEWAtNa8eR5GajIx6xb/9vMl4pR6NV96wuca7X\nqwQuLDL8sryVJTePmRNWasY59aj29PFjy3zYsG1aeyVzZtih7PMbw6rVR1BgLveq\n1mm7dg53emAqpL8n2e+Ewv7E\n-----END PRIVATE KEY-----\n",
+    "client_email": "tunder-bucket-service-account@halogen-basis-331619.iam.gserviceaccount.com",
+    "client_id": "107145902706250036257",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tunder-bucket-service-account%40halogen-basis-331619.iam.gserviceaccount.com"
+  }

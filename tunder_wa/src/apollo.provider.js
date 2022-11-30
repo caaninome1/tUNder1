@@ -11,7 +11,7 @@ import { createApolloProvider } from "@vue/apollo-option";
 const httpLink = createHttpLink({
   // You should use an absolute URL here
   //uri: "https://proxy-y6bebo7xta-uc.a.run.app",
-  uri: "http://35.238.200.164:80",
+  uri:process.env.VUE_APP_PROXY_URL,
 });
 
 //Token

@@ -100,7 +100,7 @@ def upload_blob_from_memory(contents, destination_blob_name, content_type):
     """Uploads a file to the bucket."""
 
     # The ID of your GCS bucket
-    bucket_name = 'tunder_images_bucket'
+    bucket_name = 'tunder'
 
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
