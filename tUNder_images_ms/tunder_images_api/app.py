@@ -162,10 +162,10 @@ if __name__ == '__main__':
     channel.queue_declare(queue=queue_name, durable=True)
 
     def callback(ch, method, properties, body):
-        body = json.loads(body)
-        print(" [x] Received %s" % body['id'])
-        img=base64.b64decode(str(body['b64']))
-        upload_blob_from_memory(img, str(body['id']), body['mime_type'])
+        load_body = json.loads(body)
+        print(" [x] Received %s, %s" % (load_body['id'], load_body['mime_type']))
+        img=base64.b64decode(load_body['b64'])
+        upload_blob_from_memory(img, str(load_body['id']), str(load_body['mime_type']))
 
     channel.basic_consume(queue=queue_name,
                           on_message_callback=callback, auto_ack=True)
