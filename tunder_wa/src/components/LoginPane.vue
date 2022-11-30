@@ -25,7 +25,7 @@
           />
         </div>
         <br />
-        <vue-recaptcha sitekey="6LczXaEgAAAAACBbU8tPdJbvj54oy9IrA1lDse5X"></vue-recaptcha>
+        <vue-recaptcha sitekey="6LfRB0gjAAAAANZqilkXHces_0gV-sXXOCE87-Su"></vue-recaptcha>
         <br />
         <button type="submit" class="btn btn-primary">Ingresar</button>
         <button type="button" class="btn btn-primary" v-on:click="goRegist()">
