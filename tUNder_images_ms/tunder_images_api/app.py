@@ -116,7 +116,7 @@ def download_blob_into_memory(blob_name):
     """Downloads a blob into memory."""
 
     # The ID of your GCS bucket
-    bucket_name = 'tunder_images_bucket'
+    bucket_name = 'tunder'
 
     storage_client = storage.Client()
 
@@ -136,7 +136,7 @@ def delete_blob(blob_name):
     """Deletes a blob from the bucket."""
 
     # The ID of your GCS bucket
-    bucket_name = 'tunder_images_bucket'
+    bucket_name = 'tunder'
 
     storage_client = storage.Client()
 
@@ -163,7 +163,7 @@ if __name__ == '__main__':
 
     def callback(ch, method, properties, body):
         body = json.loads(body)
-        print(" [x] Received %s" % body['id'])
+        print(" [x] Received %s" % body)
         upload_blob_from_memory(base64.b64decode(
             (body['b64'])), str(body['id']), body['mime_type'])
 
