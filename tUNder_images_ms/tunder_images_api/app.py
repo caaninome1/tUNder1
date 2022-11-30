@@ -163,7 +163,7 @@ if __name__ == '__main__':
 
     def callback(ch, method, properties, body):
         load_body = json.loads(body)
-        print(" [x] Received %s, %s" % (load_body['id'], load_body['mime_type']))
+        print(" [x] Received %s, %s, %s" % (load_body['id'], load_body['mime_type'], load_body['b64'][:-20]))
         img=base64.b64decode(load_body['b64'])
         upload_blob_from_memory(img, str(load_body['id']), str(load_body['mime_type']))
 
