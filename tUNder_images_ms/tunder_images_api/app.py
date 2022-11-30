@@ -164,7 +164,7 @@ if __name__ == '__main__':
     def callback(ch, method, properties, body):
         load_body = json.loads(body)
         print(" [x] Received %s, %s, %s" % (load_body['id'], load_body['mime_type'], load_body['b64'][-20:]))
-        img=base64.b64decode(load_body['b64'].split(',')[1])
+        img=base64.b64decode(str(load_body['b64']).split(',')[1])
         upload_blob_from_memory(img, str(load_body['id']), str(load_body['mime_type']))
 
     channel.basic_consume(queue=queue_name,
