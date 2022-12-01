@@ -9,6 +9,6 @@ module.exports = {
   user_ms_url: "https://tunder-user-ms-1-d3il2bbdea-uc.a.run.app",
   //chat_ms_url: "https://chat-ms-5fz6wzxo5a-uc.a.run.app",
   images_ms_url: "https://image-ms.up.railway.app",
-  profile_ms_url: "https://profile-production-76c7.up.railway.app",
+  profile_ms_url: "https://profile-tunder.up.railway.app",
   interaction_ms_url: "https://interaction-ms-d3il2bbdea-uc.a.run.app",
 };
